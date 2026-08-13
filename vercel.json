@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "echo 'Static site - no build needed'",
+  "buildCommand": "npm run build:css",
   "outputDirectory": ".",
   "routes": [
     {

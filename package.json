@@ -1,0 +1,32 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "A modern, responsive website for PTI International, showcasing premium titanium dental implant systems with advanced 3D visualization, smooth animations, and comprehensive multi-language support.",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "postcss style.css -o style.min.css",
+    "watch:css": "postcss style.css -o style.min.css -w",
+    "build": "npm run build:css",
+    "dev": "npm run watch:css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/incirula-ui/demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/incirula-ui/demo/issues"
+  },
+  "homepage": "https://github.com/incirula-ui/demo#readme",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.26",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^4.3.3"
+  }
+}
