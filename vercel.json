@@ -8,9 +8,6 @@
       "dest": "/index.html"
     }
   ],
-  "env": {
-    "VERCEL_ANALYTICS_ID": "@auto"
-  },
   "headers": [
     {
       "source": "/(.*)",
