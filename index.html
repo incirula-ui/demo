@@ -8,6 +8,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,6 +63,55 @@
   ::-webkit-scrollbar-thumb{ background:var(--cyan); border-radius:4px; }
   ::-webkit-scrollbar-thumb:hover{ background:var(--bronze); }
 
+  model-viewer{
+    width: 100%;
+    height: 100%;
+    --poster-color: transparent;
+    --progress-bar-color: rgba(14, 159, 196, 0.6);
+  }
+
+  .viewer-container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .model-hud{
+    position: absolute;
+    background: linear-gradient(135deg, rgba(11, 21, 38, 0.85), rgba(11, 21, 38, 0.7));
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(215, 220, 218, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: #0E9FC4;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    z-index: 10;
+    box-shadow: 0 8px 32px rgba(14, 159, 196, 0.15);
+  }
+
+  .hud-divider{
+    width: 32px;
+    height: 1px;
+    background: linear-gradient(90deg, #0E9FC4, transparent);
+    margin: 12px 0;
+  }
+
+  .hud-label{
+    opacity: 0.7;
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+
+  .hud-value{
+    color: #0E9FC4;
+    font-weight: 600;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
   .blueprint-grid{
     background-image:
       linear-gradient(var(--line) 1px, transparent 1px),
@@ -94,6 +144,26 @@
   * { transition: color 0.3s ease, border-color 0.3s ease; }
 
   /* Card hover effects */
+  /* Interactive 3D section animations */
+  .viewer-label{
+    position: absolute;
+    background: rgba(14, 159, 196, 0.95);
+    color: #F5F6F3;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 5;
+  }
+
+  .viewer-label.visible{
+    opacity: 1;
+  }
+
   .card-hover{
     position: relative;
     overflow: hidden;
@@ -230,6 +300,61 @@
     </div>
   </div>
 </nav>
+
+<!-- ============ 3D VIEWER SECTION ============ -->
+<div class="relative w-full">
+  <div class="sticky top-0 h-screen w-full -z-10 bg-gradient-to-br from-paper via-paper to-blue-50/30 flex items-center justify-center overflow-hidden pt-20">
+    <div class="viewer-container">
+      <model-viewer
+        id="implant-viewer"
+        src="https://raw.githubusercontent.com/mmelihinci/kkk/main/implante_doblandose.glb"
+        exposure="1.25"
+        environment-image="neutral"
+        shadow-intensity="1.2"
+        shadow-softness="1"
+        camera-orbit="0deg 75deg 105%"
+        camera-target="0m 0m 0m"
+        disable-zoom="false"
+        disable-pan="true"
+        ar
+        ar-modes="webxr scene-viewer quick-look">
+        <div slot="progress-bar" style="height: 4px; background: #0E9FC4; border-radius: 2px;"></div>
+      </model-viewer>
+    </div>
+
+    <!-- Enhanced HUD overlay -->
+    <div class="model-hud right-8 top-1/2 -translate-y-1/2 hidden md:block">
+      <div class="hud-label">IMPLANT SPECIFICATIONS</div>
+      <div class="hud-divider"></div>
+      <div class="hud-value" id="spec-diameter">Ø3.5 mm</div>
+      <div class="hud-value" id="spec-length">10 mm length</div>
+      <div class="hud-label" style="margin-top: 12px;">MATERIAL</div>
+      <div class="hud-divider"></div>
+      <div class="hud-value">Grade 5 Ti-6Al-4V</div>
+      <div class="hud-label" style="margin-top: 12px;">SURFACE</div>
+      <div class="hud-divider"></div>
+      <div class="hud-value">SLA Coated Ra 1.4µm</div>
+      <div class="hud-label" style="margin-top: 12px;">ROTATION</div>
+      <div class="hud-divider"></div>
+      <div class="hud-value" id="hud-rotation">0.0°</div>
+    </div>
+
+    <!-- Left info panel -->
+    <div class="absolute left-8 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-4 max-w-xs">
+      <div class="bg-cyan/10 backdrop-blur-sm border border-line px-6 py-8 rounded-lg">
+        <p class="eyebrow text-cyan text-xs mb-3">3D INTERACTIVE MODEL</p>
+        <p class="text-steel text-sm leading-relaxed">Rotate and inspect our flagship implant system. View every angle of precision engineering.</p>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+      <p class="eyebrow text-steel text-xs" data-i18n="hero_scroll_hint">Scroll to explore features</p>
+      <svg class="w-5 h-5 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </div>
+  </div>
 
 <div class="relative z-10 w-full pointer-events-none">
 
@@ -738,6 +863,9 @@
   </div>
 </footer>
 
+  </div>
+</div>
+
 <script>
   const translations = {
     en: {
@@ -1002,6 +1130,101 @@
       }
     );
   });
+
+  // ---- 3D Model Viewer Enhanced Controls ----
+  const modelViewer = document.getElementById('implant-viewer');
+  const hudRotation = document.getElementById('hud-rotation');
+
+  if(modelViewer){
+    let rotationDeg = 0;
+    let isDragging = false;
+    let startX = 0;
+    let startRotation = 0;
+
+    modelViewer.addEventListener('load', ()=>{
+      // Initial smooth auto-rotation on page load
+      gsap.to({value: 0}, {
+        value: 360,
+        duration: 8,
+        ease: "none",
+        onUpdate: function(){
+          const newDeg = this.targets()[0].value;
+          const orbit = modelViewer.getCameraOrbit();
+          modelViewer.setAttribute('camera-orbit', `${newDeg}deg ${orbit.theta} ${orbit.radius}`);
+        }
+      });
+
+      // Scroll-driven rotation
+      ScrollTrigger.create({
+        trigger: 'body',
+        start: 'top top',
+        end: 'bottom bottom',
+        onUpdate: (self)=>{
+          rotationDeg = self.progress * 720; // Full 2 rotations through scroll
+          const orbit = modelViewer.getCameraOrbit();
+          modelViewer.setAttribute('camera-orbit', `${rotationDeg}deg ${orbit.theta} ${orbit.radius}`);
+          if(hudRotation){
+            const displayDeg = (rotationDeg % 360).toFixed(1).padStart(5, '0');
+            hudRotation.textContent = displayDeg + '°';
+          }
+        }
+      });
+    });
+
+    // Mouse drag rotation
+    modelViewer.addEventListener('mousedown', (e)=>{
+      if(e.button !== 0) return;
+      isDragging = true;
+      startX = e.clientX;
+      const orbit = modelViewer.getCameraOrbit();
+      startRotation = parseFloat(orbit.phi.toString());
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e)=>{
+      if(!isDragging || !modelViewer) return;
+      const deltaX = e.clientX - startX;
+      const orbit = modelViewer.getCameraOrbit();
+      const newPhi = startRotation + (deltaX * 0.75);
+      modelViewer.setAttribute('camera-orbit', `${newPhi}deg ${orbit.theta} ${orbit.radius}`);
+    });
+
+    document.addEventListener('mouseup', ()=>{
+      isDragging = false;
+    });
+
+    // Touch support for mobile
+    modelViewer.addEventListener('touchstart', (e)=>{
+      if(e.touches.length === 1){
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        const orbit = modelViewer.getCameraOrbit();
+        startRotation = parseFloat(orbit.phi.toString());
+      }
+    });
+
+    document.addEventListener('touchmove', (e)=>{
+      if(!isDragging || !modelViewer || e.touches.length !== 1) return;
+      const deltaX = e.touches[0].clientX - startX;
+      const orbit = modelViewer.getCameraOrbit();
+      const newPhi = startRotation + (deltaX * 0.75);
+      modelViewer.setAttribute('camera-orbit', `${newPhi}deg ${orbit.theta} ${orbit.radius}`);
+    });
+
+    document.addEventListener('touchend', ()=>{
+      isDragging = false;
+    });
+
+    // Zoom with mouse wheel
+    modelViewer.addEventListener('wheel', (e)=>{
+      e.preventDefault();
+      const orbit = modelViewer.getCameraOrbit();
+      const zoomFactor = e.deltaY > 0 ? 1.1 : 0.9;
+      const newRadius = parseFloat(orbit.radius.toString()) * zoomFactor;
+      const clampedRadius = Math.max(75, Math.min(150, newRadius));
+      modelViewer.setAttribute('camera-orbit', `${orbit.phi}deg ${orbit.theta} ${clampedRadius}%`);
+    });
+  }
 
 
 </script>
