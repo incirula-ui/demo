@@ -1,1007 +1,307 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PTI International | Precision Dental Implant Systems</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="style.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-</head>
-
-<body class="bg-paper text-ink font-body antialiased overflow-x-hidden">
-
-<!-- ============ NAV ============ -->
-<nav class="fixed w-full z-50 bg-paper/95 backdrop-blur-lg border-b hairline border-line">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="flex justify-between h-20 items-center">
-      <div class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition">
-        <div class="relative w-8 h-8">
-          <svg width="32" height="32" viewBox="0 0 28 28" fill="none">
-            <circle cx="14" cy="14" r="12.5" stroke="#0B1526" stroke-width="1.4"/>
-            <path d="M14 5 L14 23 M8 9 L20 9 M9 13 L19 13 M10 17 L18 17" stroke="#0E9FC4" stroke-width="1.4" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <span class="text-lg font-display font-semibold tracking-tight">PTI <span class="text-cyan">INT.</span></span>
-      </div>
-
-      <div class="hidden lg:flex items-center gap-12">
-        <a href="#products" class="text-sm text-steel hover:text-ink transition font-medium relative group" data-i18n="nav_products">Products
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan to-bronze group-hover:w-full transition-all duration-300"></span>
-        </a>
-        <a href="#technology" class="text-sm text-steel hover:text-ink transition font-medium relative group" data-i18n="nav_technology">Technology
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan to-bronze group-hover:w-full transition-all duration-300"></span>
-        </a>
-        <a href="#features" class="text-sm text-steel hover:text-ink transition font-medium relative group" data-i18n="nav_features">Features
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan to-bronze group-hover:w-full transition-all duration-300"></span>
-        </a>
-        <a href="#why" class="text-sm text-steel hover:text-ink transition font-medium relative group" data-i18n="nav_why">Why PTI
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan to-bronze group-hover:w-full transition-all duration-300"></span>
-        </a>
-        <a href="#faq" class="text-sm text-steel hover:text-ink transition font-medium relative group" data-i18n="nav_faq">FAQ
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan to-bronze group-hover:w-full transition-all duration-300"></span>
-        </a>
-
-        <div class="h-6 w-px bg-line"></div>
-
-        <select id="lang-switch" aria-label="Language" class="bg-white border border-line text-ink text-xs font-mono rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent block py-2 px-3 outline-none cursor-pointer hover:border-cyan transition">
-          <option value="en">EN</option>
-          <option value="tr">TR</option>
-          <option value="de">DE</option>
-          <option value="fr">FR</option>
-          <option value="es">ES</option>
-          <option value="ru">RU</option>
-          <option value="ar">AR</option>
-        </select>
-      </div>
-
-      <select id="lang-switch-mobile" aria-label="Language" class="lg:hidden bg-white border border-line text-ink text-sm font-mono rounded-lg py-2 px-3 outline-none">
-        <option value="en">EN</option>
-        <option value="tr">TR</option>
-        <option value="de">DE</option>
-        <option value="fr">FR</option>
-        <option value="es">ES</option>
-        <option value="ru">RU</option>
-        <option value="ar">AR</option>
-      </select>
-    </div>
-  </div>
-</nav>
-
-<!-- ============ 3D VIEWER SECTION ============ -->
-<div class="relative w-full">
-  <div class="sticky top-0 h-screen w-full -z-10 bg-gradient-to-br from-paper via-paper to-blue-50/30 flex items-center justify-center overflow-hidden pt-20">
-    <div class="viewer-container">
-      <model-viewer
-        id="implant-viewer"
-        src="https://raw.githubusercontent.com/mmelihinci/kkk/main/implante_doblandose.glb"
-        exposure="1.25"
-        environment-image="neutral"
-        shadow-intensity="1.2"
-        shadow-softness="1"
-        camera-orbit="0deg 75deg 105%"
-        camera-target="0m 0m 0m"
-        disable-zoom="false"
-        disable-pan="true"
-        ar
-        ar-modes="webxr scene-viewer quick-look">
-        <div slot="progress-bar" style="height: 4px; background: #0E9FC4; border-radius: 2px;"></div>
-      </model-viewer>
-    </div>
-
-    <!-- Enhanced HUD overlay -->
-    <div class="model-hud right-8 top-1/2 -translate-y-1/2 hidden md:block">
-      <div class="hud-label">IMPLANT SPECIFICATIONS</div>
-      <div class="hud-divider"></div>
-      <div class="hud-value" id="spec-diameter">Ø3.5 mm</div>
-      <div class="hud-value" id="spec-length">10 mm length</div>
-      <div class="hud-label" style="margin-top: 12px;">MATERIAL</div>
-      <div class="hud-divider"></div>
-      <div class="hud-value">Grade 5 Ti-6Al-4V</div>
-      <div class="hud-label" style="margin-top: 12px;">SURFACE</div>
-      <div class="hud-divider"></div>
-      <div class="hud-value">SLA Coated Ra 1.4µm</div>
-      <div class="hud-label" style="margin-top: 12px;">ROTATION</div>
-      <div class="hud-divider"></div>
-      <div class="hud-value" id="hud-rotation">0.0°</div>
-    </div>
-
-    <!-- Left info panel -->
-    <div class="absolute left-8 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-4 max-w-xs">
-      <div class="bg-cyan/10 backdrop-blur-sm border border-line px-6 py-8 rounded-lg">
-        <p class="eyebrow text-cyan text-xs mb-3">3D INTERACTIVE MODEL</p>
-        <p class="text-steel text-sm leading-relaxed">Rotate and inspect our flagship implant system. View every angle of precision engineering.</p>
-      </div>
-    </div>
-
-    <!-- Scroll hint -->
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-      <p class="eyebrow text-steel text-xs" data-i18n="hero_scroll_hint">Scroll to explore features</p>
-      <svg class="w-5 h-5 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-      </svg>
-    </div>
-  </div>
-
-<div class="relative z-10 w-full pointer-events-none">
-
-    <!-- HERO SECTION -->
-    <section class="h-screen flex items-center max-w-7xl mx-auto px-5 sm:px-8">
-      <div class="max-w-2xl pointer-events-auto bg-white/90 backdrop-blur-xl p-10 sm:p-12 rounded-xl shadow-lg border hairline border-line bracket">
-        <p class="eyebrow text-xs text-cyan mb-6 tracking-widest" data-i18n="hero_eyebrow">ISO 13485 · CE MARKED · GLOBAL DISTRIBUTION</p>
-        <h1 class="text-5xl sm:text-6xl font-display font-bold mb-6 leading-[1.1] text-ink" data-i18n="hero_title">Precision at the<br/><span class="gradient-text">Bone Level.</span></h1>
-        <p class="text-lg text-steel mb-10 leading-relaxed" data-i18n="hero_desc">PTI International engineers titanium implant systems for clinics worldwide, built on industry-leading SLA surface technology for reliable, fast osseointegration.</p>
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-          <a href="#products" class="inline-flex items-center gap-2 bg-gradient-to-r from-ink to-blue-900 text-white text-sm font-semibold px-8 py-4 rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300">
-            <span data-i18n="hero_cta">View Product Range</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-            </svg>
-          </a>
-          <div class="flex gap-4">
-            <div class="text-xs">
-              <p class="font-semibold text-cyan">12+ Years</p>
-              <p class="text-steel" data-i18n="hero_years">Manufacturing Excellence</p>
-            </div>
-            <div class="h-12 w-px bg-line"></div>
-            <div class="text-xs">
-              <p class="font-semibold text-cyan">40+ Nations</p>
-              <p class="text-steel" data-i18n="hero_global">Global Reach</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PHASE 1 -->
-    <section class="h-screen flex items-center justify-end max-w-7xl mx-auto px-5 sm:px-8">
-      <div class="max-w-md pointer-events-auto bg-white/90 backdrop-blur-xl p-10 rounded-xl shadow-lg border hairline border-line bracket">
-        <div class="inline-flex items-center gap-2 mb-4 px-3 py-1 bg-cyan/10 rounded-full">
-          <span class="w-2 h-2 rounded-full bg-cyan"></span>
-          <p class="eyebrow text-xs text-cyan">01 / 03</p>
-        </div>
-        <h2 class="text-3xl font-display font-bold mb-4 text-ink" data-i18n="phase1_title">Flawless Insertion</h2>
-        <p class="text-steel text-base mb-6 leading-relaxed" data-i18n="phase1_desc">Our surgical kits are engineered for maximum precision. The implant acts as a secure, biomechanical anchor in the jawbone from the first turn.</p>
-        <ul class="space-y-3 text-sm text-ink font-medium">
-          <li class="flex items-start gap-3">
-            <span class="text-cyan font-bold mt-1">✓</span>
-            <span data-i18n="phase1_bullet1">Bone Level & Tissue Level options</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-cyan font-bold mt-1">✓</span>
-            <span data-i18n="phase1_bullet2">Short & compressive implants available</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- PHASE 2 -->
-    <section id="technology" class="h-screen flex items-center max-w-7xl mx-auto px-5 sm:px-8">
-      <div class="max-w-md pointer-events-auto bg-white/90 backdrop-blur-xl p-10 rounded-xl shadow-lg border hairline border-line bracket">
-        <div class="inline-flex items-center gap-2 mb-4 px-3 py-1 bg-bronze/10 rounded-full">
-          <span class="w-2 h-2 rounded-full bg-bronze"></span>
-          <p class="eyebrow text-xs text-bronze">02 / 03</p>
-        </div>
-        <h2 class="text-3xl font-display font-bold mb-4 text-ink" data-i18n="phase2_title">Osseointegration</h2>
-        <p class="text-steel text-base leading-relaxed" data-i18n="phase2_desc">Over 8–12 weeks, the jawbone fuses with our SLA-coated titanium surface. This proven micro-rough coating accelerates healing and maximizes long-term structural stability.</p>
-        <div class="mt-6 p-4 bg-cyan/5 rounded-lg border border-line">
-          <p class="text-xs text-steel font-mono"><span class="text-cyan font-bold">→</span> Surface area increases by <span class="text-cyan font-semibold">40%</span> with SLA treatment</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- PHASE 3 -->
-    <section class="h-screen flex items-center justify-end max-w-7xl mx-auto px-5 sm:px-8">
-      <div class="max-w-md pointer-events-auto bg-white/90 backdrop-blur-xl p-10 rounded-xl shadow-lg border hairline border-line bracket">
-        <div class="inline-flex items-center gap-2 mb-4 px-3 py-1 bg-sage/10 rounded-full">
-          <span class="w-2 h-2 rounded-full bg-sage"></span>
-          <p class="eyebrow text-xs text-sage">03 / 03</p>
-        </div>
-        <h2 class="text-3xl font-display font-bold mb-4 text-ink" data-i18n="phase3_title">Prosthetic Restoration</h2>
-        <p class="text-steel text-base leading-relaxed" data-i18n="phase3_desc">Once fusion is confirmed, digitally milled abutments and crowns are seated with millimetric accuracy, restoring full form and function.</p>
-        <div class="mt-6 flex gap-3">
-          <div class="flex-1 p-3 bg-paper rounded-lg border border-line text-center">
-            <p class="text-xs text-steel">Precision</p>
-            <p class="text-lg font-semibold text-ink">±0.05mm</p>
-          </div>
-          <div class="flex-1 p-3 bg-paper rounded-lg border border-line text-center">
-            <p class="text-xs text-steel">Durability</p>
-            <p class="text-lg font-semibold text-ink">20+ yrs</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-<!-- ============ STATS STRIP ============ -->
-<section class="bg-gradient-to-r from-ink via-blue-900 to-ink py-16 z-20 relative overflow-hidden">
-  <div class="absolute inset-0 blueprint-grid opacity-5"></div>
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10 grid grid-cols-2 md:grid-cols-4 gap-8">
-    <div class="text-center md:text-left group">
-      <p class="font-display text-4xl md:text-5xl text-white font-bold group-hover:text-cyan transition">12+</p>
-      <p class="text-xs text-white/60 mt-3 eyebrow tracking-wider" data-i18n="stat1_label">YEARS MANUFACTURING</p>
-    </div>
-    <div class="text-center md:text-left group">
-      <p class="font-display text-4xl md:text-5xl text-white font-bold group-hover:text-cyan transition">40+</p>
-      <p class="text-xs text-white/60 mt-3 eyebrow tracking-wider" data-i18n="stat2_label">COUNTRIES SERVED</p>
-    </div>
-    <div class="text-center md:text-left group">
-      <p class="font-display text-4xl md:text-5xl text-cyan font-bold">1.4µm</p>
-      <p class="text-xs text-white/60 mt-3 eyebrow tracking-wider" data-i18n="stat3_label">Ra SURFACE ROUGHNESS</p>
-    </div>
-    <div class="text-center md:text-left group">
-      <p class="font-display text-4xl md:text-5xl text-bronze font-bold">5/5</p>
-      <p class="text-xs text-white/60 mt-3 eyebrow tracking-wider" data-i18n="stat4_label">QUALITY CERTIFIED</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PRODUCTS ============ -->
-<section id="products" class="py-32 bg-paper z-20 relative">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="max-w-2xl mb-20">
-      <p class="eyebrow text-xs text-cyan mb-4 tracking-widest" data-i18n="prod_eyebrow">CATALOG</p>
-      <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 text-ink" data-i18n="prod_title">Comprehensive dental solutions</h2>
-      <p class="text-lg text-steel leading-relaxed" data-i18n="prod_subtitle">From single-piece compressive implants to advanced digital prosthetic components, engineered for modern dental workflows.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="bg-white rounded-xl p-10 border hairline border-line card-hover hover:border-cyan transition-all duration-300 hover:shadow-xl">
-        <div class="feature-icon mb-6">
-          <svg class="w-6 h-6 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-          </svg>
-        </div>
-        <h3 class="text-2xl font-display font-bold mb-4 text-ink" data-i18n="card1_title">Implant Systems</h3>
-        <ul class="space-y-3 text-steel">
-          <li class="flex items-center gap-2 text-sm">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyan"></span>
-            <span data-i18n="card1_b1">Bone Level Implants</span>
-          </li>
-          <li class="flex items-center gap-2 text-sm">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyan"></span>
-            <span data-i18n="card1_b2">Tissue Level Implants</span>
-          </li>
-          <li class="flex items-center gap-2 text-sm">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyan"></span>
-            <span data-i18n="card1_b3">Ø2.9mm Narrow Implants</span>
-          </li>
-          <li class="flex items-center gap-2 text-sm">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyan"></span>
-            <span data-i18n="card1_b4">Short Implants</span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="bg-white rounded-xl p-10 border hairline border-line card-hover hover:border-cyan transition-all duration-300 hover:shadow-xl">
-        <div class="feature-icon mb-6">
-          <svg class="w-6 h-6 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
-          </svg>
-        </div>
-        <h3 class="text-2xl font-display font-bold mb-4 text-ink" data-i18n="card2_title">Prosthetics & Digital</h3>
-        <ul class="space-y-3 text-steel">
-          <li class="flex items-center gap-2 text-sm">
-            <span class="w-1.5 h-1.5 rounded-full bg-bronze"></span>
-            <span data-i18n="card2_b1">Multi-unit & Temporary Abutments</span>
-          </li>
-          <li class="flex items-center gap-2 text-sm">
-            <span class="w-1.5 h-1.5 rounded-full bg-bronze"></span>
-            <span data-i18n="card2_b2">Loc-bil® Attachments</span>
-          </li>
-          <li class="flex items-center gap-2 text-sm">
-            <span class="w-1.5 h-1.5 rounded-full bg-bronze"></span>
-            <span data-i18n="card2_b3">Ti-base & Pre-mill Abutments</span>
-          </li>
-          <li class="flex items-center gap-2 text-sm">
-            <span class="w-1.5 h-1.5 rounded-full bg-bronze"></span>
-            <span data-i18n="card2_b4">Digital Analogues & Scan Bodies</span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="bg-white rounded-xl p-10 border hairline border-line card-hover hover:border-cyan transition-all duration-300 hover:shadow-xl">
-        <div class="feature-icon mb-6">
-          <svg class="w-6 h-6 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-          </svg>
-        </div>
-        <h3 class="text-2xl font-display font-bold mb-4 text-ink" data-i18n="card3_title">Surgical Kits</h3>
-        <ul class="space-y-3 text-steel">
-          <li class="flex items-center gap-2 text-sm">
-            <span class="w-1.5 h-1.5 rounded-full bg-sage"></span>
-            <span data-i18n="card3_b1">Master Surgical Kit</span>
-          </li>
-          <li class="flex items-center gap-2 text-sm">
-            <span class="w-1.5 h-1.5 rounded-full bg-sage"></span>
-            <span data-i18n="card3_b2">Stopper & Bone Expansion Kits</span>
-          </li>
-          <li class="flex items-center gap-2 text-sm">
-            <span class="w-1.5 h-1.5 rounded-full bg-sage"></span>
-            <span data-i18n="card3_b3">All-on-4 Selection Kit</span>
-          </li>
-          <li class="flex items-center gap-2 text-sm">
-            <span class="w-1.5 h-1.5 rounded-full bg-sage"></span>
-            <span data-i18n="card3_b4">GBR & Biomaterials Fixation</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SPECIFICATIONS ============ -->
-<section id="features" class="py-32 bg-white z-20 relative border-y hairline border-line">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="max-w-2xl mb-20">
-      <p class="eyebrow text-xs text-cyan mb-4 tracking-widest" data-i18n="spec_eyebrow">TECHNICAL SPECS</p>
-      <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 text-ink" data-i18n="spec_title">Engineered for Performance</h2>
-      <p class="text-lg text-steel leading-relaxed" data-i18n="spec_subtitle">Every dimension, material, and surface treatment is optimized for clinical success and longevity.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="spec-item">
-        <p class="eyebrow text-xs text-cyan mb-3 tracking-widest">MATERIAL</p>
-        <h3 class="text-xl font-display font-bold text-ink mb-2">Grade 5 Titanium</h3>
-        <p class="text-sm text-steel leading-relaxed">Ti-6Al-4V alloy providing superior strength-to-weight ratio, biocompatibility, and resistance to clinical stresses over 20+ years.</p>
-      </div>
-      <div class="spec-item">
-        <p class="eyebrow text-xs text-bronze mb-3 tracking-widest">SURFACE</p>
-        <h3 class="text-xl font-display font-bold text-ink mb-2">SLA Treatment (1.4µm)</h3>
-        <p class="text-sm text-steel leading-relaxed">Sandblasted, large-grit, acid-etched surface increases bone contact area by 40% and accelerates osseointegration.</p>
-      </div>
-      <div class="spec-item">
-        <p class="eyebrow text-xs text-sage mb-3 tracking-widest">DIMENSIONS</p>
-        <h3 class="text-xl font-display font-bold text-ink mb-2">Multiple Sizes</h3>
-        <p class="text-sm text-steel leading-relaxed">From Ø2.9mm narrow to Ø5.5mm standard implants. Lengths range 8–16mm for optimal anatomical fit.</p>
-      </div>
-      <div class="spec-item">
-        <p class="eyebrow text-xs text-cyan mb-3 tracking-widest">GEOMETRY</p>
-        <h3 class="text-xl font-display font-bold text-ink mb-2">Double-Threaded</h3>
-        <p class="text-sm text-steel leading-relaxed">Progressive pitch design distributes load evenly, reduces insertion torque, and improves primary stability.</p>
-      </div>
-    </div>
-
-    <!-- Comparison table -->
-    <div class="mt-16 overflow-x-auto">
-      <table class="w-full text-sm">
-        <thead>
-          <tr class="border-b-2 border-line">
-            <th class="text-left py-4 px-4 font-display font-bold text-ink">Feature</th>
-            <th class="text-center py-4 px-4 font-display font-bold text-cyan">PTI Standard</th>
-            <th class="text-center py-4 px-4 font-display font-bold text-steel">Industry Avg</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-b border-line hover:bg-cyan/5 transition">
-            <td class="py-4 px-4 text-steel font-medium">Surface Roughness</td>
-            <td class="text-center py-4 px-4 font-mono text-ink font-semibold">1.4µm</td>
-            <td class="text-center py-4 px-4 font-mono text-steel">1.8–2.2µm</td>
-          </tr>
-          <tr class="border-b border-line hover:bg-cyan/5 transition">
-            <td class="py-4 px-4 text-steel font-medium">Osseointegration Timeline</td>
-            <td class="text-center py-4 px-4 font-mono text-ink font-semibold">8–10 weeks</td>
-            <td class="text-center py-4 px-4 font-mono text-steel">10–12 weeks</td>
-          </tr>
-          <tr class="border-b border-line hover:bg-cyan/5 transition">
-            <td class="py-4 px-4 text-steel font-medium">Long-term Success Rate</td>
-            <td class="text-center py-4 px-4 font-mono text-cyan font-semibold">97%+</td>
-            <td class="text-center py-4 px-4 font-mono text-steel">95%</td>
-          </tr>
-          <tr class="hover:bg-cyan/5 transition">
-            <td class="py-4 px-4 text-steel font-medium">Insertion Torque Range</td>
-            <td class="text-center py-4 px-4 font-mono text-ink font-semibold">25–35 Ncm</td>
-            <td class="text-center py-4 px-4 font-mono text-steel">20–40 Ncm</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ============ WHY PTI ============ -->
-<section id="why" class="py-32 bg-paper z-20 relative">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="max-w-2xl mb-20">
-      <p class="eyebrow text-xs text-cyan mb-4 tracking-widest" data-i18n="why_eyebrow">ENGINEERING STANDARD</p>
-      <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 text-ink" data-i18n="why_title">Why clinics choose PTI</h2>
-      <p class="text-lg text-steel leading-relaxed" data-i18n="why_subtitle">Every implant is machined, cleaned, and inspected under the same quality system worldwide — no batch-to-batch guesswork.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <div class="bg-white rounded-xl p-10 border hairline border-line hover:border-cyan transition-all">
-        <div class="flex gap-6 mb-6">
-          <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan to-blue-600 flex items-center justify-center flex-shrink-0">
-            <span class="font-display font-bold text-white text-xl">A</span>
-          </div>
-          <div className="flex-1">
-            <h3 class="font-display font-bold text-xl mb-2 text-ink" data-i18n="why1_title">Grade 5 Titanium</h3>
-            <p class="text-steel text-sm leading-relaxed" data-i18n="why1_desc">Ti-6Al-4V alloy for the balance of strength, biocompatibility, and fatigue resistance clinical loading demands.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-xl p-10 border hairline border-line hover:border-bronze transition-all">
-        <div class="flex gap-6 mb-6">
-          <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-bronze to-yellow-600 flex items-center justify-center flex-shrink-0">
-            <span class="font-display font-bold text-white text-xl">B</span>
-          </div>
-          <div>
-            <h3 class="font-display font-bold text-xl mb-2 text-ink" data-i18n="why2_title">SLA Surface Treatment</h3>
-            <p class="text-steel text-sm leading-relaxed" data-i18n="why2_desc">Sandblasted, large-grit, acid-etched surfaces increase bone contact area and shorten healing time.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-xl p-10 border hairline border-line hover:border-sage transition-all">
-        <div class="flex gap-6 mb-6">
-          <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-sage to-green-600 flex items-center justify-center flex-shrink-0">
-            <span class="font-display font-bold text-white text-xl">C</span>
-          </div>
-          <div>
-            <h3 class="font-display font-bold text-xl mb-2 text-ink" data-i18n="why3_title">Digital-first Workflow</h3>
-            <p class="text-steel text-sm leading-relaxed" data-i18n="why3_desc">Scan bodies and digital analogues integrate with major intraoral scanning and CAD/CAM systems.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-xl p-10 border hairline border-line hover:border-cyan transition-all">
-        <div class="flex gap-6 mb-6">
-          <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan to-teal-600 flex items-center justify-center flex-shrink-0">
-            <span class="font-display font-bold text-white text-xl">D</span>
-          </div>
-          <div>
-            <h3 class="font-display font-bold text-xl mb-2 text-ink" data-i18n="why4_title">Full Traceability</h3>
-            <p class="text-steel text-sm leading-relaxed" data-i18n="why4_desc">Every implant ships with a batch-coded certificate, so clinics can trace material and sterilization records instantly.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CERTIFICATIONS ============ -->
-<section class="py-24 bg-white z-20 relative border-b hairline border-line">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <h2 class="text-2xl font-display font-bold text-center mb-16 text-ink" data-i18n="cert_title">Global Certifications & Standards</h2>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PTI International | Precision Dental Implants</title>
     
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-      <div class="flex flex-col items-center text-center group">
-        <div class="w-20 h-20 rounded-xl bg-gradient-to-br from-cyan/10 to-blue-100 flex items-center justify-center mb-4 group-hover:from-cyan/20 group-hover:to-blue-200 transition">
-          <svg class="w-10 h-10 text-cyan" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
-          </svg>
-        </div>
-        <p class="font-display font-bold text-ink mb-1">ISO 13485</p>
-        <p class="text-xs text-steel">Medical Devices QMS</p>
-      </div>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP for Scroll Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Google Model Viewer for Native 3D Rendering -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
-      <div class="flex flex-col items-center text-center group">
-        <div class="w-20 h-20 rounded-xl bg-gradient-to-br from-bronze/10 to-yellow-100 flex items-center justify-center mb-4 group-hover:from-bronze/20 group-hover:to-yellow-200 transition">
-          <svg class="w-10 h-10 text-bronze" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
-          </svg>
-        </div>
-        <p class="font-display font-bold text-ink mb-1">CE Marked</p>
-        <p class="text-xs text-steel">European Compliance</p>
-      </div>
-
-      <div class="flex flex-col items-center text-center group">
-        <div class="w-20 h-20 rounded-xl bg-gradient-to-br from-sage/10 to-green-100 flex items-center justify-center mb-4 group-hover:from-sage/20 group-hover:to-green-200 transition">
-          <svg class="w-10 h-10 text-sage" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
-          </svg>
-        </div>
-        <p class="font-display font-bold text-ink mb-1">FDA Registered</p>
-        <p class="text-xs text-steel">US Market Clearance</p>
-      </div>
-
-      <div class="flex flex-col items-center text-center group">
-        <div class="w-20 h-20 rounded-xl bg-gradient-to-br from-slate-200 to-gray-300 flex items-center justify-center mb-4 group-hover:from-slate-300 group-hover:to-gray-400 transition">
-          <svg class="w-10 h-10 text-ink" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
-          </svg>
-        </div>
-        <p class="font-display font-bold text-ink mb-1">GMP Certified</p>
-        <p class="text-xs text-steel">Manufacturing Excellence</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section id="faq" class="py-32 bg-paper z-20 relative">
-  <div class="max-w-4xl mx-auto px-5 sm:px-8">
-    <div class="mb-20">
-      <p class="eyebrow text-xs text-cyan mb-4 tracking-widest" data-i18n="faq_eyebrow">SUPPORT</p>
-      <h2 class="text-4xl font-display font-bold text-ink" data-i18n="faq_title">Frequently asked questions</h2>
-    </div>
-
-    <div class="space-y-4">
-      <details class="group bg-white rounded-xl border hairline border-line p-8 cursor-pointer hover:border-cyan transition-all duration-300">
-        <summary class="flex items-center justify-between font-display font-bold text-ink text-lg">
-          <span data-i18n="faq1_q">How long until the permanent restoration?</span>
-          <span class="text-2xl text-cyan group-open:rotate-45 transition-transform duration-300">+</span>
-        </summary>
-        <p class="text-steel text-sm leading-relaxed mt-4 text-base" data-i18n="faq1_a">Osseointegration — fusion of implant to jawbone — takes approximately 8–12 weeks. Proper healing is essential before load-bearing.</p>
-      </details>
-
-      <details class="group bg-white rounded-xl border hairline border-line p-8 cursor-pointer hover:border-cyan transition-all duration-300">
-        <summary class="flex items-center justify-between font-display font-bold text-ink text-lg">
-          <span data-i18n="faq2_q">Is dental implant surgery painful?</span>
-          <span class="text-2xl text-cyan group-open:rotate-45 transition-transform duration-300">+</span>
-        </summary>
-        <p class="text-steel text-sm leading-relaxed mt-4 text-base" data-i18n="faq2_a">It's generally a painless procedure under local anesthesia. Sedation and general anesthesia are also available depending on patient comfort.</p>
-      </details>
-
-      <details class="group bg-white rounded-xl border hairline border-line p-8 cursor-pointer hover:border-cyan transition-all duration-300">
-        <summary class="flex items-center justify-between font-display font-bold text-ink text-lg">
-          <span data-i18n="faq3_q">What materials are PTI implants made from?</span>
-          <span class="text-2xl text-cyan group-open:rotate-45 transition-transform duration-300">+</span>
-        </summary>
-        <p class="text-steel text-sm leading-relaxed mt-4 text-base" data-i18n="faq3_a">Grade 5 titanium alloy (Ti-6Al-4V), the clinical standard for strength, biocompatibility, and long-term durability.</p>
-      </details>
-
-      <details class="group bg-white rounded-xl border hairline border-line p-8 cursor-pointer hover:border-cyan transition-all duration-300">
-        <summary class="flex items-center justify-between font-display font-bold text-ink text-lg">
-          <span data-i18n="faq4_q">Do you support clinics outside Turkey?</span>
-          <span class="text-2xl text-cyan group-open:rotate-45 transition-transform duration-300">+</span>
-        </summary>
-        <p class="text-steel text-sm leading-relaxed mt-4 text-base" data-i18n="faq4_a">Yes — PTI International ships to distributors and clinics in more than 40 countries with full documentation and support.</p>
-      </details>
-
-      <details class="group bg-white rounded-xl border hairline border-line p-8 cursor-pointer hover:border-cyan transition-all duration-300">
-        <summary class="flex items-center justify-between font-display font-bold text-ink text-lg">
-          <span data-i18n="faq5_q">What is the warranty period?</span>
-          <span class="text-2xl text-cyan group-open:rotate-45 transition-transform duration-300">+</span>
-        </summary>
-        <p class="text-steel text-sm leading-relaxed mt-4 text-base" data-i18n="faq5_a">All PTI implants include a 10-year manufacturer's warranty and comprehensive after-sales technical support with documentation traceability.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CONTACT / CTA ============ -->
-<section id="contact" class="py-32 bg-gradient-to-r from-ink via-blue-900 to-ink z-20 relative overflow-hidden">
-  <div class="absolute inset-0 blueprint-grid opacity-5"></div>
-  <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center relative z-10">
-    <p class="eyebrow text-xs text-cyan mb-6 tracking-widest" data-i18n="contact_eyebrow">GET IN TOUCH</p>
-    <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6" data-i18n="contact_title">Request the full catalog</h2>
-    <p class="text-lg text-white/70 mb-12 max-w-2xl mx-auto leading-relaxed" data-i18n="contact_desc">Speak with our clinical support team about product specifications, distribution, or bulk ordering for your clinic.</p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="mailto:info@pti-international.com" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan to-blue-400 text-ink text-sm font-bold px-8 py-4 rounded-lg hover:shadow-2xl hover:shadow-cyan/50 hover:scale-105 transition-all duration-300">
-        <span data-i18n="contact_cta">Contact Our Team</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-        </svg>
-      </a>
-      <a href="#products" class="inline-flex items-center justify-center gap-2 bg-white/10 text-white text-sm font-semibold px-8 py-4 rounded-lg border border-white/30 hover:bg-white/20 transition-all duration-300 backdrop-blur">
-        <span data-i18n="download_catalog">Download Catalog</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-        </svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer class="bg-ink pt-24 pb-12 border-t hairline border-white/10 z-20 relative">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-      <div class="md:col-span-2">
-        <span class="text-2xl font-display font-bold text-white block mb-4">PTI <span class="text-cyan">INTERNATIONAL</span></span>
-        <p class="text-white/50 text-sm leading-relaxed mb-6 max-w-sm" data-i18n="footer_desc">Advanced implantology solutions engineered to global manufacturing standards, trusted by clinics on five continents.</p>
-        <div class="flex gap-4">
-          <a href="#" class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white hover:bg-cyan hover:text-ink transition">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
-          </a>
-          <a href="#" class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white hover:bg-cyan hover:text-ink transition">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg>
-          </a>
-        </div>
-      </div>
-      <div>
-        <p class="eyebrow text-xs text-white/40 mb-6 tracking-wider" data-i18n="footer_col1">PRODUCTS</p>
-        <ul class="space-y-3 text-sm text-white/60 hover:text-white">
-          <li><a href="#products" class="hover:text-cyan transition" data-i18n="footer_l1">Implant Systems</a></li>
-          <li><a href="#products" class="hover:text-cyan transition" data-i18n="footer_l2">Prosthetics & Digital</a></li>
-          <li><a href="#products" class="hover:text-cyan transition" data-i18n="footer_l3">Surgical Kits</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="eyebrow text-xs text-white/40 mb-6 tracking-wider" data-i18n="footer_col2">COMPANY</p>
-        <ul class="space-y-3 text-sm text-white/60 hover:text-white">
-          <li><a href="#technology" class="hover:text-cyan transition" data-i18n="footer_l4">Technology</a></li>
-          <li><a href="#why" class="hover:text-cyan transition" data-i18n="footer_l5">Why PTI</a></li>
-          <li><a href="#contact" class="hover:text-cyan transition" data-i18n="footer_l6">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="pt-8 border-t border-white/10">
-      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-white/40 text-xs">
-        <p>© 2026 PTI International. <span data-i18n="footer_rights">All rights reserved.</span></p>
-        <div class="flex gap-6 text-white/40">
-          <a href="#" class="hover:text-white transition" data-i18n="footer_privacy">Privacy Policy</a>
-          <a href="#" class="hover:text-white transition" data-i18n="footer_terms">Terms of Service</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-
-  </div>
-</div>
-
-<script>
-  const translations = {
-    en: {
-      nav_products:"Products", nav_technology:"Technology", nav_features:"Features", nav_why:"Why PTI", nav_faq:"FAQ", nav_contact:"Contact",
-      hero_eyebrow:"ISO 13485 · CE MARKED · GLOBAL DISTRIBUTION",
-      hero_title:"Precision at the<br/><span class='gradient-text'>Bone Level.</span>",
-      hero_desc:"PTI International engineers titanium implant systems for clinics worldwide, built on industry-leading SLA surface technology for reliable, fast osseointegration.",
-      hero_cta:"View Product Range", hero_scroll_hint:"Scroll down to explore", hero_years:"Manufacturing Excellence", hero_global:"Global Reach",
-      phase1_title:"Flawless Insertion", phase1_desc:"Our surgical kits are engineered for maximum precision. The implant acts as a secure, biomechanical anchor in the jawbone from the first turn.",
-      phase1_bullet1:"Bone Level & Tissue Level options", phase1_bullet2:"Short & compressive implants available",
-      phase2_title:"Osseointegration", phase2_desc:"Over 8–12 weeks, the jawbone fuses with our SLA-coated titanium surface. This proven micro-rough coating accelerates healing and maximizes long-term structural stability.",
-      phase3_title:"Prosthetic Restoration", phase3_desc:"Once fusion is confirmed, digitally milled abutments and crowns are seated with millimetric accuracy, restoring full form and function.",
-      stat1_label:"YEARS MANUFACTURING", stat2_label:"COUNTRIES SERVED", stat3_label:"Ra SURFACE ROUGHNESS", stat4_label:"QUALITY CERTIFIED",
-      prod_eyebrow:"CATALOG", prod_title:"Comprehensive dental solutions", prod_subtitle:"From single-piece compressive implants to advanced digital prosthetic components, engineered for modern dental workflows.",
-      card1_title:"Implant Systems", card1_b1:"Bone Level Implants", card1_b2:"Tissue Level Implants", card1_b3:"Ø2.9mm Narrow Implants", card1_b4:"Short Implants",
-      card2_title:"Prosthetics & Digital", card2_b1:"Multi-unit & Temporary Abutments", card2_b2:"Loc-bil® Attachments", card2_b3:"Ti-base & Pre-mill Abutments", card2_b4:"Digital Analogues & Scan Bodies",
-      card3_title:"Surgical Kits", card3_b1:"Master Surgical Kit", card3_b2:"Stopper & Bone Expansion Kits", card3_b3:"All-on-4 Selection Kit", card3_b4:"GBR & Biomaterials Fixation",
-      spec_eyebrow:"TECHNICAL SPECS", spec_title:"Engineered for Performance", spec_subtitle:"Every dimension, material, and surface treatment is optimized for clinical success and longevity.",
-      why_eyebrow:"ENGINEERING STANDARD", why_title:"Why clinics choose PTI", why_subtitle:"Every implant is machined, cleaned, and inspected under the same quality system worldwide — no batch-to-batch guesswork.",
-      why1_title:"Grade 5 Titanium", why1_desc:"Ti-6Al-4V alloy for the balance of strength, biocompatibility, and fatigue resistance clinical loading demands.",
-      why2_title:"SLA Surface Treatment", why2_desc:"Sandblasted, large-grit, acid-etched surfaces increase bone contact area and shorten healing time.",
-      why3_title:"Digital-first Workflow", why3_desc:"Scan bodies and digital analogues integrate with major intraoral scanning and CAD/CAM systems.",
-      why4_title:"Full Traceability", why4_desc:"Every implant ships with a batch-coded certificate, so clinics can trace material and sterilization records instantly.",
-      cert_title:"Global Certifications & Standards",
-      faq_eyebrow:"SUPPORT", faq_title:"Frequently asked questions",
-      faq1_q:"How long until the permanent restoration?", faq1_a:"Osseointegration — fusion of implant to jawbone — takes approximately 8–12 weeks. Proper healing is essential before load-bearing.",
-      faq2_q:"Is dental implant surgery painful?", faq2_a:"It's generally a painless procedure under local anesthesia. Sedation and general anesthesia are also available depending on patient comfort.",
-      faq3_q:"What materials are PTI implants made from?", faq3_a:"Grade 5 titanium alloy (Ti-6Al-4V), the clinical standard for strength, biocompatibility, and long-term durability.",
-      faq4_q:"Do you support clinics outside Turkey?", faq4_a:"Yes — PTI International ships to distributors and clinics in more than 40 countries with full documentation and support.",
-      faq5_q:"What is the warranty period?", faq5_a:"All PTI implants include a 10-year manufacturer's warranty and comprehensive after-sales technical support with documentation traceability.",
-      contact_eyebrow:"GET IN TOUCH", contact_title:"Request the full catalog", contact_desc:"Speak with our clinical support team about product specifications, distribution, or bulk ordering for your clinic.", contact_cta:"Contact Our Team", download_catalog:"Download Catalog",
-      footer_desc:"Advanced implantology solutions engineered to global manufacturing standards, trusted by clinics on five continents.",
-      footer_col1:"PRODUCTS", footer_l1:"Implant Systems", footer_l2:"Prosthetics & Digital", footer_l3:"Surgical Kits",
-      footer_col2:"COMPANY", footer_l4:"Technology", footer_l5:"Why PTI", footer_l6:"Contact", footer_rights:"All rights reserved.", footer_privacy:"Privacy Policy", footer_terms:"Terms of Service"
-    },
-    tr: {
-      nav_products:"Ürünler", nav_technology:"Teknoloji", nav_features:"Özellikler", nav_why:"Neden PTI", nav_faq:"SSS", nav_contact:"İletişim",
-      hero_eyebrow:"ISO 13485 · CE SERTİFİKALI · KÜRESEL DAĞITIM",
-      hero_title:"Kemik Seviyesinde<br/><span class='gradient-text'>Kusursuz Hassasiyet.</span>",
-      hero_desc:"PTI International, dünya çapındaki klinikler için titanyum implant sistemleri üretir; hızlı ve güvenilir osseointegrasyon için sektör lideri SLA yüzey teknolojisiyle donatılmıştır.",
-      hero_cta:"Ürün Yelpazesini Gör", hero_scroll_hint:"Keşfetmek için aşağı kaydırın", hero_years:"Üretim Mükemmelliyeti", hero_global:"Küresel Erişim",
-      phase1_title:"Kusursuz Yerleşim", phase1_desc:"Cerrahi setlerimiz maksimum hassasiyet için tasarlanmıştır. İmplant, ilk turdan itibaren çene kemiğinde güvenli, biyomekanik bir çapa görevi görür.",
-      phase1_bullet1:"Kemik ve Doku Seviyesi seçenekleri", phase1_bullet2:"Kısa ve kompresif implantlar mevcut",
-      phase2_title:"Osseointegrasyon", phase2_desc:"8–12 haftalık süreçte çene kemiği, SLA kaplı titanyum yüzeyimizle kaynaşır. Bu kanıtlanmış mikro-pürüzlü kaplama iyileşmeyi hızlandırır ve uzun vadeli yapısal stabiliteyi artırır.",
-      phase3_title:"Protetik Restorasyon", phase3_desc:"Kaynaşma doğrulandıktan sonra, dijital olarak frezelenmiş dayanaklar ve kronlar milimetrik hassasiyetle yerleştirilerek tam işlev kazandırılır.",
-      stat1_label:"YILLIK ÜRETİM DENEYİMİ", stat2_label:"HİZMET VERİLEN ÜLKE", stat3_label:"Ra YÜZEY PÜRÜZLÜLÜĞÜ", stat4_label:"SERTİFİKALI KALİTE",
-      prod_eyebrow:"KATALOG", prod_title:"Kapsamlı dental çözümler", prod_subtitle:"Tek parça kompresif implantlardan gelişmiş dijital protetik bileşenlere kadar, modern dental iş akışları için tasarlandı.",
-      card1_title:"İmplant Sistemleri", card1_b1:"Kemik Seviyesi İmplantlar", card1_b2:"Doku Seviyesi İmplantlar", card1_b3:"Ø2.9mm İnce İmplantlar", card1_b4:"Kısa İmplantlar",
-      card2_title:"Protetik ve Dijital", card2_b1:"Multi-unit ve Geçici Dayanaklar", card2_b2:"Loc-bil® Tutucular", card2_b3:"Ti-base ve Pre-mill Dayanaklar", card2_b4:"Dijital Analoglar ve Scan Body",
-      card3_title:"Cerrahi Setler", card3_b1:"Ana Cerrahi Set", card3_b2:"Stopper ve Kemik Genişletme Setleri", card3_b3:"All-on-4 Seçim Kiti", card3_b4:"GBR ve Biyomateryal Fiksasyonu",
-      spec_eyebrow:"TEKNİK ÖZELLİKLER", spec_title:"Performans İçin Tasarlandı", spec_subtitle:"Her boyut, malzeme ve yüzey işlemi klinik başarı ve uzun ömür için optimize edilmiştir.",
-      why_eyebrow:"MÜHENDİSLİK STANDARDI", why_title:"Klinikler neden PTI'yi tercih ediyor", why_subtitle:"Her implant, dünya çapında aynı kalite sistemi altında işlenir, temizlenir ve denetlenir — parti farkı riski yoktur.",
-      why1_title:"Grade 5 Titanyum", why1_desc:"Klinik yüklemenin gerektirdiği güç, biyouyumluluk ve yorulma direnci dengesi için Ti-6Al-4V alaşımı.",
-      why2_title:"SLA Yüzey İşlemi", why2_desc:"Kumlanmış, kaba taneli, asitle pürüzlendirilmiş yüzeyler kemik temas alanını artırır ve iyileşme süresini kısaltır.",
-      why3_title:"Dijital Öncelikli İş Akışı", why3_desc:"Scan body ve dijital analoglar başlıca ağız içi tarama ve CAD/CAM sistemleriyle uyumludur.",
-      why4_title:"Tam İzlenebilirlik", why4_desc:"Her implant, parti kodlu bir sertifikayla gönderilir; klinikler malzeme ve sterilizasyon kayıtlarını anında izleyebilir.",
-      cert_title:"Küresel Sertifikalar ve Standartlar",
-      faq_eyebrow:"DESTEK", faq_title:"Sıkça sorulan sorular",
-      faq1_q:"Kalıcı restorasyon için ne kadar beklemeliyim?", faq1_a:"Osseointegrasyon — implantın çene kemiğiyle kaynaşması — yaklaşık 8–12 hafta sürer. Yük bindirmeden önce düzgün iyileşme şarttır.",
-      faq2_q:"İmplant ameliyatı ağrılı mıdır?", faq2_a:"Genellikle lokal anestezi altında ağrısız bir işlemdir. Hastanın konforuna göre sedasyon ve genel anestezi seçenekleri de mevcuttur.",
-      faq3_q:"PTI implantları hangi malzemeden üretiliyor?", faq3_a:"Klinik standart olan Grade 5 titanyum alaşımı (Ti-6Al-4V); güç, biyouyumluluk ve uzun ömür sağlar.",
-      faq4_q:"Türkiye dışındaki klinikleri destekliyor musunuz?", faq4_a:"Evet — PTI International, 40'tan fazla ülkedeki distribütör ve kliniklere tam belgelendirme ve destekle sevkiyat yapmaktadır.",
-      faq5_q:"Garanti süresi nedir?", faq5_a:"Tüm PTI implantları 10 yıllık üretici garantisi ve belgeleme izlenebilirliği ile kapsamlı satış sonrası teknik destek içerir.",
-      contact_eyebrow:"BİZE ULAŞIN", contact_title:"Tam katalogu talep edin", contact_desc:"Ürün özellikleri, dağıtım veya kliniğiniz için toplu sipariş konusunda klinik destek ekibimizle görüşün.", contact_cta:"Ekibimizle İletişime Geçin", download_catalog:"Kataloğu İndir",
-      footer_desc:"Beş kıtadaki kliniklerin güvendiği, küresel üretim standartlarında mühendisliği yapılmış gelişmiş implantoloji çözümleri.",
-      footer_col1:"ÜRÜNLER", footer_l1:"İmplant Sistemleri", footer_l2:"Protetik ve Dijital", footer_l3:"Cerrahi Setler",
-      footer_col2:"ŞİRKET", footer_l4:"Teknoloji", footer_l5:"Neden PTI", footer_l6:"İletişim", footer_rights:"Tüm hakları saklıdır.", footer_privacy:"Gizlilik Politikası", footer_terms:"Hizmet Şartları"
-    },
-    de: {
-      nav_products:"Produkte", nav_technology:"Technologie", nav_features:"Merkmale", nav_why:"Warum PTI", nav_faq:"FAQ", nav_contact:"Kontakt",
-      hero_eyebrow:"ISO 13485 · CE-GEKENNZEICHNET · WELTWEITER VERTRIEB",
-      hero_title:"Präzision auf<br/><span class='gradient-text'>Knochenniveau.</span>",
-      hero_desc:"PTI International entwickelt Titanimplantatsysteme für Kliniken weltweit, basierend auf branchenführender SLA-Oberflächentechnologie für zuverlässige, schnelle Osseointegration.",
-      hero_cta:"Produktpalette ansehen", hero_scroll_hint:"Zum Erkunden nach unten scrollen", hero_years:"Fertigungsexzellenz", hero_global:"Globale Reichweite",
-      phase1_title:"Präzise Insertion", phase1_desc:"Unsere Operationssets sind auf höchste Präzision ausgelegt. Das Implantat dient von der ersten Umdrehung an als sicherer, biomechanischer Anker im Kieferknochen.",
-      phase1_bullet1:"Bone-Level- und Tissue-Level-Optionen", phase1_bullet2:"Kurze und kompressive Implantate erhältlich",
-      phase2_title:"Osseointegration", phase2_desc:"Über 8–12 Wochen verwächst der Kieferknochen mit unserer SLA-beschichteten Titanoberfläche. Diese bewährte mikroraue Beschichtung beschleunigt die Heilung und maximiert die langfristige Stabilität.",
-      phase3_title:"Prothetische Versorgung", phase3_desc:"Nach bestätigter Osseointegration werden digital gefräste Abutments und Kronen millimetergenau eingesetzt und stellen die volle Funktion wieder her.",
-      stat1_label:"JAHRE FERTIGUNG", stat2_label:"BELIEFERTE LÄNDER", stat3_label:"Ra OBERFLÄCHENRAUHEIT", stat4_label:"ZERTIFIZIERTE QUALITÄT",
-      prod_eyebrow:"KATALOG", prod_title:"Umfassende Dentallösungen", prod_subtitle:"Von einteiligen kompressiven Implantaten bis zu fortschrittlichen digitalen prothetischen Komponenten — entwickelt für moderne Dental-Workflows.",
-      card1_title:"Implantatsysteme", card1_b1:"Bone-Level-Implantate", card1_b2:"Tissue-Level-Implantate", card1_b3:"Ø2,9 mm schmale Implantate", card1_b4:"Kurze Implantate",
-      card2_title:"Prothetik & Digital", card2_b1:"Multi-Unit- & Provisorische Abutments", card2_b2:"Loc-bil®-Halterungen", card2_b3:"Ti-Base- & vorgefräste Abutments", card2_b4:"Digitale Analoge & Scankörper",
-      card3_title:"Chirurgie-Sets", card3_b1:"Master-Chirurgie-Set", card3_b2:"Stopper- & Knochenexpansions-Sets", card3_b3:"All-on-4-Auswahlkit", card3_b4:"GBR- & Biomaterial-Fixierung",
-      spec_eyebrow:"TECHNISCHE SPEZIFIKATIONEN", spec_title:"Für Leistung entwickelt", spec_subtitle:"Jede Dimension, jedes Material und jede Oberflächenbehandlung ist für klinischen Erfolg und Langlebigkeit optimiert.",
-      why_eyebrow:"TECHNISCHER STANDARD", why_title:"Warum Kliniken sich für PTI entscheiden", why_subtitle:"Jedes Implantat wird weltweit nach demselben Qualitätssystem gefertigt, gereinigt und geprüft — keine Schwankungen zwischen Chargen.",
-      why1_title:"Titan Grad 5", why1_desc:"Ti-6Al-4V-Legierung für das Gleichgewicht aus Festigkeit, Biokompatibilität und Ermüdungsbeständigkeit, das klinische Belastung erfordert.",
-      why2_title:"SLA-Oberflächenbehandlung", why2_desc:"Sandgestrahlte, grobkörnige, säuregeätzte Oberflächen vergrößern die Knochenkontaktfläche und verkürzen die Heilungszeit.",
-      why3_title:"Digitaler Workflow", why3_desc:"Scankörper und digitale Analoge sind mit gängigen Intraoralscan- und CAD/CAM-Systemen kompatibel.",
-      why4_title:"Vollständige Rückverfolgbarkeit", why4_desc:"Jedes Implantat wird mit einem chargencodierten Zertifikat geliefert, sodass Kliniken Material- und Sterilisationsdaten sofort nachverfolgen können.",
-      cert_title:"Globale Zertifizierungen und Standards",
-      faq_eyebrow:"SUPPORT", faq_title:"Häufig gestellte Fragen",
-      faq1_q:"Wie lange dauert es bis zur endgültigen Versorgung?", faq1_a:"Die Osseointegration — das Verwachsen des Implantats mit dem Kieferknochen — dauert etwa 8–12 Wochen. Eine vollständige Heilung ist vor der Belastung unerlässlich.",
-      faq2_q:"Ist die Implantat-OP schmerzhaft?", faq2_a:"In der Regel ein schmerzfreier Eingriff unter Lokalanästhesie. Je nach Patientenkomfort sind auch Sedierung und Vollnarkose möglich.",
-      faq3_q:"Aus welchem Material bestehen PTI-Implantate?", faq3_a:"Titanlegierung Grad 5 (Ti-6Al-4V), der klinische Standard für Festigkeit, Biokompatibilität und Langlebigkeit.",
-      faq4_q:"Beliefern Sie auch Kliniken außerhalb der Türkei?", faq4_a:"Ja — PTI International beliefert Vertriebspartner und Kliniken in mehr als 40 Ländern mit vollständiger Dokumentation und Support.",
-      faq5_q:"Wie lange ist die Garantiezeit?", faq5_a:"Alle PTI-Implantate enthalten eine 10-jährige Herstellergarantie und umfassenden technischen After-Sales-Support mit Dokumentationsverfolgbarkeit.",
-      contact_eyebrow:"KONTAKT AUFNEHMEN", contact_title:"Den vollständigen Katalog anfordern", contact_desc:"Sprechen Sie mit unserem klinischen Support-Team über Produktspezifikationen, Vertrieb oder Großbestellungen für Ihre Klinik.", contact_cta:"Team kontaktieren", download_catalog:"Katalog herunterladen",
-      footer_desc:"Fortschrittliche implantologische Lösungen nach globalen Fertigungsstandards, denen Kliniken auf fünf Kontinenten vertrauen.",
-      footer_col1:"PRODUKTE", footer_l1:"Implantatsysteme", footer_l2:"Prothetik & Digital", footer_l3:"Chirurgie-Sets",
-      footer_col2:"UNTERNEHMEN", footer_l4:"Technologie", footer_l5:"Warum PTI", footer_l6:"Kontakt", footer_rights:"Alle Rechte vorbehalten.", footer_privacy:"Datenschutz", footer_terms:"Nutzungsbedingungen"
-    },
-    fr: {
-      nav_products:"Produits", nav_technology:"Technologie", nav_features:"Caractéristiques", nav_why:"Pourquoi PTI", nav_faq:"FAQ", nav_contact:"Contact",
-      hero_eyebrow:"ISO 13485 · MARQUAGE CE · DISTRIBUTION MONDIALE",
-      hero_title:"Précision au<br/><span class='gradient-text'>niveau osseux.</span>",
-      hero_desc:"PTI International conçoit des systèmes d'implants en titane pour les cliniques du monde entier, grâce à une technologie de surface SLA de pointe pour une ostéointégration rapide et fiable.",
-      hero_cta:"Voir la gamme de produits", hero_scroll_hint:"Faites défiler pour explorer", hero_years:"Excellence de fabrication", hero_global:"Portée mondiale",
-      phase1_title:"Une pose parfaite", phase1_desc:"Nos kits chirurgicaux sont conçus pour une précision maximale. Dès le premier tour, l'implant agit comme un ancrage biomécanique sûr dans l'os maxillaire.",
-      phase1_bullet1:"Options Bone Level et Tissue Level", phase1_bullet2:"Implants courts et compressifs disponibles",
-      phase2_title:"Ostéointégration", phase2_desc:"Sur une période de 8 à 12 semaines, l'os maxillaire fusionne avec notre surface en titane traitée SLA. Ce revêtement micro-rugueux éprouvé accélère la guérison et maximise la stabilité structurelle à long terme.",
-      phase3_title:"Restauration prothétique", phase3_desc:"Une fois la fusion confirmée, des piliers et couronnes usinés numériquement sont posés avec une précision millimétrique, restaurant pleinement forme et fonction.",
-      stat1_label:"ANS DE FABRICATION", stat2_label:"PAYS DESSERVIS", stat3_label:"RUGOSITÉ DE SURFACE Ra", stat4_label:"QUALITÉ CERTIFIÉE",
-      prod_eyebrow:"CATALOGUE", prod_title:"Des solutions dentaires complètes", prod_subtitle:"Des implants compressifs monoblocs aux composants prothétiques numériques avancés, conçus pour les flux de travail dentaires modernes.",
-      card1_title:"Systèmes d'implants", card1_b1:"Implants Bone Level", card1_b2:"Implants Tissue Level", card1_b3:"Implants étroits Ø2,9 mm", card1_b4:"Implants courts",
-      card2_title:"Prothétique et numérique", card2_b1:"Piliers multi-unités et temporaires", card2_b2:"Attachements Loc-bil®", card2_b3:"Piliers Ti-base et pré-usinés", card2_b4:"Analogues numériques et scan bodies",
-      card3_title:"Kits chirurgicaux", card3_b1:"Kit chirurgical principal", card3_b2:"Kits stoppeur et expansion osseuse", card3_b3:"Kit de sélection All-on-4", card3_b4:"Fixation ROG et biomatériaux",
-      spec_eyebrow:"SPÉCIFICATIONS TECHNIQUES", spec_title:"Conçu pour la performance", spec_subtitle:"Chaque dimension, matériau et traitement de surface est optimisé pour le succès clinique et la longévité.",
-      why_eyebrow:"NORME D'INGÉNIERIE", why_title:"Pourquoi les cliniques choisissent PTI", why_subtitle:"Chaque implant est usiné, nettoyé et inspecté selon le même système qualité dans le monde entier — aucune variation d'un lot à l'autre.",
-      why1_title:"Titane de grade 5", why1_desc:"Alliage Ti-6Al-4V pour l'équilibre entre résistance, biocompatibilité et tenue à la fatigue exigé par la mise en charge clinique.",
-      why2_title:"Traitement de surface SLA", why2_desc:"Les surfaces sablées, à gros grain et mordancées à l'acide augmentent la surface de contact osseux et réduisent le temps de guérison.",
-      why3_title:"Flux numérique intégré", why3_desc:"Les scan bodies et analogues numériques s'intègrent aux principaux systèmes de scan intra-oral et CAD/CAM.",
-      why4_title:"Traçabilité complète", why4_desc:"Chaque implant est livré avec un certificat codé par lot, permettant aux cliniques de retracer instantanément les données de matériau et de stérilisation.",
-      cert_title:"Certifications et normes mondiales",
-      faq_eyebrow:"ASSISTANCE", faq_title:"Questions fréquentes",
-      faq1_q:"Combien de temps avant la restauration définitive ?", faq1_a:"L'ostéointégration — la fusion de l'implant à l'os maxillaire — prend environ 8 à 12 semaines. Une guérison correcte est essentielle avant la mise en charge.",
-      faq2_q:"La chirurgie implantaire est-elle douloureuse ?", faq2_a:"C'est généralement une intervention indolore réalisée sous anesthésie locale. La sédation et l'anesthésie générale sont aussi disponibles selon le confort du patient.",
-      faq3_q:"En quel matériau sont fabriqués les implants PTI ?", faq3_a:"Alliage de titane de grade 5 (Ti-6Al-4V), la norme clinique pour la résistance, la biocompatibilité et la durabilité à long terme.",
-      faq4_q:"Fournissez-vous des cliniques hors de Turquie ?", faq4_a:"Oui — PTI International livre des distributeurs et cliniques dans plus de 40 pays, avec documentation et support complets.",
-      faq5_q:"Quelle est la durée de la garantie ?", faq5_a:"Tous les implants PTI incluent une garantie fabricant de 10 ans et un support technique après-vente complet avec traçabilité documentaire.",
-      contact_eyebrow:"NOUS CONTACTER", contact_title:"Demander le catalogue complet", contact_desc:"Échangez avec notre équipe de support clinique sur les spécifications produits, la distribution ou les commandes groupées pour votre clinique.", contact_cta:"Contacter notre équipe", download_catalog:"Télécharger le catalogue",
-      footer_desc:"Des solutions d'implantologie avancées, conçues selon des normes de fabrication mondiales, adoptées par des cliniques sur cinq continents.",
-      footer_col1:"PRODUITS", footer_l1:"Systèmes d'implants", footer_l2:"Prothétique et numérique", footer_l3:"Kits chirurgicaux",
-      footer_col2:"ENTREPRISE", footer_l4:"Technologie", footer_l5:"Pourquoi PTI", footer_l6:"Contact", footer_rights:"Tous droits réservés.", footer_privacy:"Politique de confidentialité", footer_terms:"Conditions d'utilisation"
-    },
-    es: {
-      nav_products:"Productos", nav_technology:"Tecnología", nav_features:"Características", nav_why:"Por qué PTI", nav_faq:"Preguntas", nav_contact:"Contacto",
-      hero_eyebrow:"ISO 13485 · MARCADO CE · DISTRIBUCIÓN GLOBAL",
-      hero_title:"Precisión a<br/><span class='gradient-text'>nivel óseo.</span>",
-      hero_desc:"PTI International diseña sistemas de implantes de titanio para clínicas de todo el mundo, con tecnología de superficie SLA líder en el sector para una osteointegración rápida y fiable.",
-      hero_cta:"Ver gama de productos", hero_scroll_hint:"Desplázate para explorar", hero_years:"Excelencia en fabricación", hero_global:"Alcance global",
-      phase1_title:"Inserción impecable", phase1_desc:"Nuestros kits quirúrgicos están diseñados para la máxima precisión. Desde la primera vuelta, el implante actúa como un anclaje biomecánico seguro en el hueso maxilar.",
-      phase1_bullet1:"Opciones Bone Level y Tissue Level", phase1_bullet2:"Implantes cortos y compresivos disponibles",
-      phase2_title:"Osteointegración", phase2_desc:"Durante 8 a 12 semanas, el hueso maxilar se fusiona con nuestra superficie de titanio tratada con SLA. Este recubrimiento microrrugoso, científicamente comprobado, acelera la curación y maximiza la estabilidad estructural a largo plazo.",
-      phase3_title:"Restauración protésica", phase3_desc:"Una vez confirmada la fusión, se colocan pilares y coronas fresados digitalmente con precisión milimétrica, restaurando la forma y función completas.",
-      stat1_label:"AÑOS DE FABRICACIÓN", stat2_label:"PAÍSES ATENDIDOS", stat3_label:"RUGOSIDAD DE SUPERFICIE Ra", stat4_label:"CALIDAD CERTIFICADA",
-      prod_eyebrow:"CATÁLOGO", prod_title:"Soluciones dentales integrales", prod_subtitle:"Desde implantes compresivos de una pieza hasta componentes protésicos digitales avanzados, diseñados para los flujos de trabajo dentales modernos.",
-      card1_title:"Sistemas de implantes", card1_b1:"Implantes Bone Level", card1_b2:"Implantes Tissue Level", card1_b3:"Implantes estrechos Ø2,9 mm", card1_b4:"Implantes cortos",
-      card2_title:"Prótesis y digital", card2_b1:"Pilares multiunidad y temporales", card2_b2:"Aditamentos Loc-bil®", card2_b3:"Pilares Ti-base y premecanizados", card2_b4:"Análogos digitales y scan bodies",
-      card3_title:"Kits quirúrgicos", card3_b1:"Kit quirúrgico principal", card3_b2:"Kits de tope y expansión ósea", card3_b3:"Kit de selección All-on-4", card3_b4:"Fijación de ROG y biomateriales",
-      spec_eyebrow:"ESPECIFICACIONES TÉCNICAS", spec_title:"Diseñado para el rendimiento", spec_subtitle:"Cada dimensión, material y tratamiento de superficie está optimizado para el éxito clínico y la longevidad.",
-      why_eyebrow:"ESTÁNDAR DE INGENIERÍA", why_title:"Por qué las clínicas eligen PTI", why_subtitle:"Cada implante se mecaniza, limpia e inspecciona bajo el mismo sistema de calidad en todo el mundo, sin variaciones entre lotes.",
-      why1_title:"Titanio grado 5", why1_desc:"Aleación Ti-6Al-4V para el equilibrio de resistencia, biocompatibilidad y resistencia a la fatiga que exige la carga clínica.",
-      why2_title:"Tratamiento de superficie SLA", why2_desc:"Las superficies arenadas, de grano grueso y grabadas con ácido aumentan el área de contacto óseo y acortan el tiempo de curación.",
-      why3_title:"Flujo de trabajo digital", why3_desc:"Los scan bodies y análogos digitales se integran con los principales sistemas de escaneo intraoral y CAD/CAM.",
-      why4_title:"Trazabilidad completa", why4_desc:"Cada implante se envía con un certificado codificado por lote, para que las clínicas rastreen al instante los registros de material y esterilización.",
-      cert_title:"Certificaciones y normas globales",
-      faq_eyebrow:"SOPORTE", faq_title:"Preguntas frecuentes",
-      faq1_q:"¿Cuánto tiempo pasa hasta la restauración definitiva?", faq1_a:"La osteointegración —la fusión del implante con el hueso maxilar— tarda aproximadamente 8 a 12 semanas. Una curación adecuada es esencial antes de aplicar carga.",
-      faq2_q:"¿Es dolorosa la cirugía de implantes?", faq2_a:"Suele ser un procedimiento indoloro bajo anestesia local. También hay sedación y anestesia general disponibles según el confort del paciente.",
-      faq3_q:"¿De qué material están hechos los implantes PTI?", faq3_a:"Aleación de titanio grado 5 (Ti-6Al-4V), el estándar clínico de resistencia, biocompatibilidad y durabilidad a largo plazo.",
-      faq4_q:"¿Atienden clínicas fuera de Turquía?", faq4_a:"Sí — PTI International envía a distribuidores y clínicas en más de 40 países con documentación y soporte completos.",
-      faq5_q:"¿Cuál es el período de garantía?", faq5_a:"Todos los implantes PTI incluyen garantía del fabricante de 10 años y soporte técnico integral post-venta con trazabilidad documentaria.",
-      contact_eyebrow:"CONTÁCTANOS", contact_title:"Solicita el catálogo completo", contact_desc:"Habla con nuestro equipo de soporte clínico sobre especificaciones de producto, distribución o pedidos al por mayor para tu clínica.", contact_cta:"Contactar con nuestro equipo", download_catalog:"Descargar catálogo",
-      footer_desc:"Soluciones avanzadas de implantología diseñadas según estándares de fabricación globales, en las que confían clínicas de cinco continentes.",
-      footer_col1:"PRODUCTOS", footer_l1:"Sistemas de implantes", footer_l2:"Prótesis y digital", footer_l3:"Kits quirúrgicos",
-      footer_col2:"EMPRESA", footer_l4:"Tecnología", footer_l5:"Por qué PTI", footer_l6:"Contacto", footer_rights:"Todos los derechos reservados.", footer_privacy:"Política de privacidad", footer_terms:"Términos de servicio"
-    },
-    ru: {
-      nav_products:"Продукты", nav_technology:"Технологии", nav_features:"Особенности", nav_why:"Почему PTI", nav_faq:"Вопросы", nav_contact:"Контакты",
-      hero_eyebrow:"ISO 13485 · МАРКИРОВКА CE · МИРОВАЯ ДИСТРИБУЦИЯ",
-      hero_title:"Точность на<br/><span class='gradient-text'>уровне кости.</span>",
-      hero_desc:"PTI International разрабатывает титановые имплантационные системы для клиник по всему миру на основе передовой технологии поверхности SLA для надёжной и быстрой остеоинтеграции.",
-      hero_cta:"Смотреть линейку продуктов", hero_scroll_hint:"Прокрутите для исследования", hero_years:"Производственное совершенство", hero_global:"Глобальный охват",
-      phase1_title:"Безупречная установка", phase1_desc:"Наши хирургические наборы разработаны для максимальной точности. Имплантат с первого оборота служит надёжным биомеханическим анкером в челюстной кости.",
-      phase1_bullet1:"Варианты Bone Level и Tissue Level", phase1_bullet2:"Доступны короткие и компрессивные имплантаты",
-      phase2_title:"Остеоинтеграция", phase2_desc:"В течение 8–12 недель челюстная кость срастается с нашей титановой поверхностью с покрытием SLA. Это проверенное микрошероховатое покрытие ускоряет заживление и повышает долговременную стабильность.",
-      phase3_title:"Протезное восстановление", phase3_desc:"После подтверждения сращения устанавливаются цифровые фрезерованные абатменты и коронки с миллиметровой точностью, полностью восстанавливая форму и функцию.",
-      stat1_label:"ЛЕТ ПРОИЗВОДСТВА", stat2_label:"СТРАН ОБСЛУЖИВАЕТСЯ", stat3_label:"ШЕРОХОВАТОСТЬ ПОВЕРХНОСТИ Ra", stat4_label:"СЕРТИФИЦИРОВАННАЯ КАЧЕСТВО",
-      prod_eyebrow:"КАТАЛОГ", prod_title:"Комплексные стоматологические решения", prod_subtitle:"От цельных компрессивных имплантатов до передовых цифровых протезных компонентов — для современных стоматологических процессов.",
-      card1_title:"Имплантационные системы", card1_b1:"Имплантаты Bone Level", card1_b2:"Имплантаты Tissue Level", card1_b3:"Узкие имплантаты Ø2,9 мм", card1_b4:"Короткие имплантаты",
-      card2_title:"Протезирование и цифра", card2_b1:"Мульти-юнит и временные абатменты", card2_b2:"Крепления Loc-bil®", card2_b3:"Ti-base и предфрезерованные абатменты", card2_b4:"Цифровые аналоги и скан-тела",
-      card3_title:"Хирургические наборы", card3_b1:"Основной хирургический набор", card3_b2:"Наборы для стопора и расширения кости", card3_b3:"Набор для выбора All-on-4", card3_b4:"Фиксация НРК и биоматериалов",
-      spec_eyebrow:"ТЕХНИЧЕСКИЕ ХАРАКТЕРИСТИКИ", spec_title:"Разработано для производительности", spec_subtitle:"Каждый размер, материал и поверхностная обработка оптимизированы для клинического успеха и долговечности.",
-      why_eyebrow:"ИНЖЕНЕРНЫЙ СТАНДАРТ", why_title:"Почему клиники выбирают PTI", why_subtitle:"Каждый имплантат обрабатывается, очищается и проверяется по единой системе качества по всему миру — без разброса между партиями.",
-      why1_title:"Титан 5 класса", why1_desc:"Сплав Ti-6Al-4V обеспечивает баланс прочности, биосовместимости и усталостной прочности, необходимый при клинической нагрузке.",
-      why2_title:"Поверхностная обработка SLA", why2_desc:"Пескоструйная, крупнозернистая, протравленная кислотой поверхность увеличивает площадь контакта с костью и сокращает время заживления.",
-      why3_title:"Цифровой рабочий процесс", why3_desc:"Скан-тела и цифровые аналоги совместимы с основными системами внутриротового сканирования и CAD/CAM.",
-      why4_title:"Полная прослеживаемость", why4_desc:"Каждый имплантат поставляется с сертификатом по партии, что позволяет клиникам мгновенно отследить данные о материале и стерилизации.",
-      cert_title:"Глобальные сертификации и стандарты",
-      faq_eyebrow:"ПОДДЕРЖКА", faq_title:"Часто задаваемые вопросы",
-      faq1_q:"Сколько ждать постоянной реставрации?", faq1_a:"Остеоинтеграция — сращение имплантата с челюстной костью — занимает примерно 8–12 недель. Полноценное заживление необходимо перед нагрузкой.",
-      faq2_q:"Болезненна ли операция по установке имплантата?", faq2_a:"Обычно это безболезненная процедура под местной анестезией. В зависимости от комфорта пациента также доступны седация и общий наркоз.",
-      faq3_q:"Из какого материала изготовлены имплантаты PTI?", faq3_a:"Титановый сплав 5 класса (Ti-6Al-4V) — клинический стандарт прочности, биосовместимости и долговечности.",
-      faq4_q:"Работаете ли вы с клиниками за пределами Турции?", faq4_a:"Да — PTI International поставляет продукцию дистрибьюторам и клиникам более чем в 40 странах с полным пакетом документации и поддержкой.",
-      faq5_q:"Каков срок гарантии?", faq5_a:"Все имплантаты PTI включают 10-летнюю гарантию производителя и полную техническую поддержку после продажи с отслеживанием документов.",
-      contact_eyebrow:"СВЯЖИТЕСЬ С НАМИ", contact_title:"Запросить полный каталог", contact_desc:"Обсудите со специалистами клинической поддержки характеристики продукции, дистрибуцию или оптовый заказ для вашей клиники.", contact_cta:"Связаться с нашей командой", download_catalog:"Загрузить каталог",
-      footer_desc:"Передовые решения в имплантологии, разработанные по мировым производственным стандартам и востребованные клиниками на пяти континентах.",
-      footer_col1:"ПРОДУКТЫ", footer_l1:"Имплантационные системы", footer_l2:"Протезирование и цифра", footer_l3:"Хирургические наборы",
-      footer_col2:"КОМПАНИЯ", footer_l4:"Технологии", footer_l5:"Почему PTI", footer_l6:"Контакты", footer_rights:"Все права защищены.", footer_privacy:"Политика конфиденциальности", footer_terms:"Условия использования"
-    },
-    ar: {
-      nav_products:"المنتجات", nav_technology:"التقنية", nav_features:"المميزات", nav_why:"لماذا PTI", nav_faq:"الأسئلة الشائعة", nav_contact:"تواصل معنا",
-      hero_eyebrow:"ISO 13485 · معتمد CE · توزيع عالمي",
-      hero_title:"دقة على<br/><span class='gradient-text'>مستوى العظم.</span>",
-      hero_desc:"تصمم PTI International أنظمة زراعة أسنان من التيتانيوم للعيادات حول العالم، مبنية على تقنية سطح SLA الرائدة في الصناعة لتحقيق اندماج عظمي سريع وموثوق.",
-      hero_cta:"عرض تشكيلة المنتجات", hero_scroll_hint:"مرّر للاستكشاف", hero_years:"تميز التصنيع", hero_global:"الوصول العالمي",
-      phase1_title:"تركيب دقيق تمامًا", phase1_desc:"صُممت أطقم الجراحة لدينا لتحقيق أقصى درجات الدقة. تعمل الزرعة كمرساة آمنة وميكانيكية حيوية في عظم الفك منذ اللفة الأولى.",
-      phase1_bullet1:"خيارات Bone Level و Tissue Level", phase1_bullet2:"تتوفر زرعات قصيرة وضاغطة",
-      phase2_title:"الاندماج العظمي", phase2_desc:"خلال فترة 8 إلى 12 أسبوعًا، يندمج عظم الفك مع سطح التيتانيوم المعالج بتقنية SLA. يسرّع هذا الطلاء الدقيق الخشونة والمثبت علميًا من الشفاء ويعزز الثبات الهيكلي طويل الأمد.",
-      phase3_title:"الترميم التعويضي", phase3_desc:"بعد تأكيد الاندماج، تُركّب الدعامات والتيجان المشغولة رقميًا بدقة تصل إلى الميليمتر لاستعادة الشكل والوظيفة بالكامل.",
-      stat1_label:"سنوات من التصنيع", stat2_label:"دولة نخدمها", stat3_label:"خشونة السطح Ra", stat4_label:"جودة معتمدة",
-      prod_eyebrow:"الكتالوج", prod_title:"حلول أسنان شاملة", prod_subtitle:"من الزرعات الضاغطة أحادية القطعة إلى مكوّنات التعويضات الرقمية المتقدمة، مصمّمة لسير العمل الحديث في طب الأسنان.",
-      card1_title:"أنظمة الزرعات", card1_b1:"زرعات Bone Level", card1_b2:"زرعات Tissue Level", card1_b3:"زرعات ضيقة Ø2.9 مم", card1_b4:"زرعات قصيرة",
-      card2_title:"التعويضات والرقمنة", card2_b1:"دعامات متعددة الوحدات ومؤقتة", card2_b2:"ملحقات ®Loc-bil", card2_b3:"دعامات Ti-base ومُشغّلة مسبقًا", card2_b4:"مماثلات رقمية وأجسام مسح",
-      card3_title:"أطقم الجراحة", card3_b1:"طقم الجراحة الرئيسي", card3_b2:"أطقم التوقف وتوسيع العظم", card3_b3:"طقم اختيار All-on-4", card3_b4:"تثبيت GBR والمواد الحيوية",
-      spec_eyebrow:"المواصفات التقنية", spec_title:"مصمم للأداء", spec_subtitle:"كل بُعد وكل مادة وكل معالجة سطح مُحسّنة لتحقيق النجاح السريري والمتانة.",
-      why_eyebrow:"معيار هندسي", why_title:"لماذا تختار العيادات PTI", why_subtitle:"تُشغَّل كل زرعة وتُنظَّف وتُفحص بموجب نظام الجودة نفسه في جميع أنحاء العالم — دون أي تفاوت بين الدفعات.",
-      why1_title:"تيتانيوم درجة 5", why1_desc:"سبيكة Ti-6Al-4V لتحقيق التوازن بين القوة والتوافق الحيوي ومقاومة الإجهاد التي يتطلبها التحميل السريري.",
-      why2_title:"معالجة السطح SLA", why2_desc:"الأسطح المرشوشة بالرمل، خشنة الحبيبات، والمحفورة بالحمض تزيد من مساحة التماس مع العظم وتقصّر مدة الشفاء.",
-      why3_title:"سير عمل رقمي أولاً", why3_desc:"تتكامل أجسام المسح والمماثلات الرقمية مع أهم أنظمة المسح داخل الفم وأنظمة CAD/CAM.",
-      why4_title:"إمكانية تتبع كاملة", why4_desc:"تُشحن كل زرعة مع شهادة مرمّزة بالدفعة، مما يتيح للعيادات تتبع سجلات المواد والتعقيم فورًا.",
-      cert_title:"الشهادات والمعايير العالمية",
-      faq_eyebrow:"الدعم", faq_title:"الأسئلة الشائعة",
-      faq1_q:"كم يجب أن أنتظر للترميم الدائم؟", faq1_a:"يستغرق الاندماج العظمي — التحام الزرعة بعظم الفك — نحو 8 إلى 12 أسبوعًا. الشفاء الكامل ضروري قبل تحميل الزرعة.",
-      faq2_q:"هل جراحة زراعة الأسنان مؤلمة؟", faq2_a:"عادةً ما تكون إجراءً غير مؤلم يُجرى تحت التخدير الموضعي. يتوفر أيضًا التسكين والتخدير العام حسب راحة المريض.",
-      faq3_q:"من أي مادة تُصنع زرعات PTI؟", faq3_a:"سبيكة تيتانيوم درجة 5 (Ti-6Al-4V)، وهي المعيار السريري للقوة والتوافق الحيوي والمتانة طويلة الأمد.",
-      faq4_q:"هل تدعمون عيادات خارج تركيا؟", faq4_a:"نعم — تشحن PTI International إلى موزعين وعيادات في أكثر من 40 دولة مع توثيق ودعم كاملين.",
-      faq5_q:"ما هي مدة الضمان؟", faq5_a:"جميع زرعات PTI تشمل ضمان الشركة المصنعة لمدة 10 سنوات ودعم تقني شامل بعد البيع مع إمكانية تتبع الوثائق.",
-      contact_eyebrow:"تواصل معنا", contact_title:"اطلب الكتالوج الكامل", contact_desc:"تحدث مع فريق الدعم السريري لدينا حول مواصفات المنتج أو التوزيع أو الطلبات بالجملة لعيادتك.", contact_cta:"تواصل مع فريقنا", download_catalog:"تحميل الكتالوج",
-      footer_desc:"حلول زراعة أسنان متقدمة، مصمّمة وفق معايير التصنيع العالمية، وتثق بها عيادات في خمس قارات.",
-      footer_col1:"المنتجات", footer_l1:"أنظمة الزرعات", footer_l2:"التعويضات والرقمنة", footer_l3:"أطقم الجراحة",
-      footer_col2:"الشركة", footer_l4:"التقنية", footer_l5:"لماذا PTI", footer_l6:"تواصل معنا", footer_rights:"جميع الحقوق محفوظة.", footer_privacy:"سياسة الخصوصية", footer_terms:"شروط الخدمة"
-    }
-  };
-
-  const elementsToTranslate = document.querySelectorAll('[data-i18n]');
-  const rtlLangs = ['ar'];
-
-  function applyLang(lang){
-    elementsToTranslate.forEach(el=>{
-      const key = el.getAttribute('data-i18n');
-      if(translations[lang] && translations[lang][key]){
-        el.innerHTML = translations[lang][key];
-      }
-    });
-    document.documentElement.lang = lang;
-    document.documentElement.dir = rtlLangs.includes(lang) ? 'rtl' : 'ltr';
-    document.getElementById('lang-switch').value = lang;
-    document.getElementById('lang-switch-mobile').value = lang;
-  }
-
-  document.getElementById('lang-switch').addEventListener('change', e=> applyLang(e.target.value));
-  document.getElementById('lang-switch-mobile').addEventListener('change', e=> applyLang(e.target.value));
-
-  // ---- GSAP scroll reveals ----
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.utils.toArray('.gs-reveal').forEach((elem)=>{
-    gsap.fromTo(elem,
-      { autoAlpha:0, y:50 },
-      { duration:1.2, autoAlpha:1, y:0,
-        scrollTrigger:{ trigger:elem, start:"top 75%", end:"bottom 25%", toggleActions:"play reverse play reverse" }
-      }
-    );
-  });
-
-  // ---- 3D Model Viewer Enhanced Controls ----
-  const modelViewer = document.getElementById('implant-viewer');
-  const hudRotation = document.getElementById('hud-rotation');
-
-  if(modelViewer){
-    let rotationDeg = 0;
-    let isDragging = false;
-    let startX = 0;
-    let startRotation = 0;
-
-    modelViewer.addEventListener('load', ()=>{
-      // Initial smooth auto-rotation on page load
-      gsap.to({value: 0}, {
-        value: 360,
-        duration: 8,
-        ease: "none",
-        onUpdate: function(){
-          const newDeg = this.targets()[0].value;
-          const orbit = modelViewer.getCameraOrbit();
-          modelViewer.setAttribute('camera-orbit', `${newDeg}deg ${orbit.theta} ${orbit.radius}`);
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pti-blue': '#1CAAD9',
+                        'pti-dark': '#0F172A',
+                    }
+                }
+            }
         }
-      });
-
-      // Scroll-driven rotation
-      ScrollTrigger.create({
-        trigger: 'body',
-        start: 'top top',
-        end: 'bottom bottom',
-        onUpdate: (self)=>{
-          rotationDeg = self.progress * 720; // Full 2 rotations through scroll
-          const orbit = modelViewer.getCameraOrbit();
-          modelViewer.setAttribute('camera-orbit', `${rotationDeg}deg ${orbit.theta} ${orbit.radius}`);
-          if(hudRotation){
-            const displayDeg = (rotationDeg % 360).toFixed(1).padStart(5, '0');
-            hudRotation.textContent = displayDeg + '°';
-          }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #1CAAD9; border-radius: 4px; }
+        
+        /* Ensures the 3D model takes up the full container */
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            --poster-color: transparent;
         }
-      });
-    });
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans antialiased overflow-x-hidden">
 
-    // Mouse drag rotation
-    modelViewer.addEventListener('mousedown', (e)=>{
-      if(e.button !== 0) return;
-      isDragging = true;
-      startX = e.clientX;
-      const orbit = modelViewer.getCameraOrbit();
-      startRotation = parseFloat(orbit.phi.toString());
-      e.preventDefault();
-    });
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-pti-dark tracking-tighter">PTI <span class="text-pti-blue">INTERNATIONAL</span></span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#products" class="text-gray-600 hover:text-pti-blue transition font-medium" data-i18n="nav_products">Products</a>
+                    <a href="#technology" class="text-gray-600 hover:text-pti-blue transition font-medium" data-i18n="nav_technology">Technology</a>
+                    <a href="#faq" class="text-gray-600 hover:text-pti-blue transition font-medium" data-i18n="nav_faq">FAQ</a>
+                    
+                    <!-- Language Switcher -->
+                    <select id="lang-switch" class="bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-pti-blue focus:border-pti-blue block p-2 outline-none cursor-pointer">
+                        <option value="en">EN</option>
+                        <option value="tr">TR</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    document.addEventListener('mousemove', (e)=>{
-      if(!isDragging || !modelViewer) return;
-      const deltaX = e.clientX - startX;
-      const orbit = modelViewer.getCameraOrbit();
-      const newPhi = startRotation + (deltaX * 0.75);
-      modelViewer.setAttribute('camera-orbit', `${newPhi}deg ${orbit.theta} ${orbit.radius}`);
-    });
+    <!-- Interactive 3D Scroll Section -->
+    <div class="relative w-full">
+        
+        <!-- Sticky Native 3D Model Container -->
+        <div class="sticky top-0 h-screen w-full -z-10 bg-gradient-to-b from-slate-50 to-white flex items-center justify-center overflow-hidden pt-20">
+            <!-- Using the raw GitHub link for the GLB file -->
+            <model-viewer 
+                id="implant-model"
+                src="https://raw.githubusercontent.com/mmelihinci/kkk/main/implante_doblandose.glb" 
+                exposure="1.2" 
+                environment-image="neutral" 
+                shadow-intensity="1"
+                camera-orbit="0deg 75deg 105%"
+                disable-zoom
+                disable-pan>
+            </model-viewer>
+        </div>
 
-    document.addEventListener('mouseup', ()=>{
-      isDragging = false;
-    });
+        <!-- Scrolling Content Overlay -->
+        <div class="relative z-10 w-full pointer-events-none">
+            
+            <!-- Hero Panel -->
+            <section class="h-screen flex items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-xl pointer-events-auto bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-lg border border-gray-100 gs-reveal">
+                    <h1 class="text-5xl font-extrabold text-pti-dark mb-4 leading-tight" data-i18n="hero_title">Precision at the <br/><span class="text-pti-blue">Bone Level.</span></h1>
+                    <p class="text-lg text-gray-600 mb-8" data-i18n="hero_desc">PTI International delivers advanced titanium implant solutions. Powered by industry-leading SLA surface technology for optimal osseointegration.</p>
+                    <p class="text-sm font-semibold text-pti-blue uppercase tracking-widest animate-pulse" data-i18n="hero_scroll">Scroll to visualize insertion ↓</p>
+                </div>
+            </section>
 
-    // Touch support for mobile
-    modelViewer.addEventListener('touchstart', (e)=>{
-      if(e.touches.length === 1){
-        isDragging = true;
-        startX = e.touches[0].clientX;
-        const orbit = modelViewer.getCameraOrbit();
-        startRotation = parseFloat(orbit.phi.toString());
-      }
-    });
+            <!-- Phase 1 Panel -->
+            <section class="h-screen flex items-center justify-end max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-md pointer-events-auto bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-lg border border-gray-100 gs-reveal">
+                    <h2 class="text-3xl font-bold text-pti-dark mb-4" data-i18n="phase1_title">Phase 1: Flawless Insertion</h2>
+                    <p class="text-gray-600 mb-4" data-i18n="phase1_desc">Our surgical kits provide maximum precision. The implant acts as a secure, biomechanical anchor in the jawbone.</p>
+                    <ul class="space-y-2 text-sm text-gray-600 font-medium">
+                        <li data-i18n="phase1_bullet1">✓ Bone Level & Tissue Level Options</li>
+                        <li data-i18n="phase1_bullet2">✓ Short & Compressive Implants available</li>
+                    </ul>
+                </div>
+            </section>
 
-    document.addEventListener('touchmove', (e)=>{
-      if(!isDragging || !modelViewer || e.touches.length !== 1) return;
-      const deltaX = e.touches[0].clientX - startX;
-      const orbit = modelViewer.getCameraOrbit();
-      const newPhi = startRotation + (deltaX * 0.75);
-      modelViewer.setAttribute('camera-orbit', `${newPhi}deg ${orbit.theta} ${orbit.radius}`);
-    });
+            <!-- Phase 2 Panel -->
+            <section id="technology" class="h-screen flex items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-md pointer-events-auto bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-lg border border-gray-100 gs-reveal">
+                    <h2 class="text-3xl font-bold text-pti-dark mb-4" data-i18n="phase2_title">Phase 2: Osseointegration</h2>
+                    <p class="text-gray-600" data-i18n="phase2_desc">Over a period of 8-12 weeks, the jawbone fuses perfectly with our SLA-coated titanium surface. This scientifically proven coating accelerates healing and maximizes long-term structural stability.</p>
+                </div>
+            </section>
+        </div>
+    </div>
 
-    document.addEventListener('touchend', ()=>{
-      isDragging = false;
-    });
+    <!-- Detailed Products Section -->
+    <section id="products" class="py-24 bg-white z-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-pti-dark mb-4" data-i18n="prod_title">Comprehensive Dental Solutions</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="prod_subtitle">From single-piece compressive implants to advanced digital prosthetic components, designed for modern dental workflows.</p>
+            </div>
 
-    // Zoom with mouse wheel
-    modelViewer.addEventListener('wheel', (e)=>{
-      e.preventDefault();
-      const orbit = modelViewer.getCameraOrbit();
-      const zoomFactor = e.deltaY > 0 ? 1.1 : 0.9;
-      const newRadius = parseFloat(orbit.radius.toString()) * zoomFactor;
-      const clampedRadius = Math.max(75, Math.min(150, newRadius));
-      modelViewer.setAttribute('camera-orbit', `${orbit.phi}deg ${orbit.theta} ${clampedRadius}%`);
-    });
-  }
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-lg transition">
+                    <div class="w-12 h-12 bg-pti-blue/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-pti-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-pti-dark mb-3" data-i18n="card1_title">Implant Systems</h3>
+                    <ul class="text-gray-600 space-y-2 text-sm">
+                        <li data-i18n="card1_b1">• Bone Level Implants</li>
+                        <li data-i18n="card1_b2">• Tissue Level Implants</li>
+                        <li data-i18n="card1_b3">• Ø2.9 mm Narrow Implants</li>
+                        <li data-i18n="card1_b4">• Short Implants</li>
+                    </ul>
+                </div>
 
+                <!-- Card 2 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-lg transition">
+                    <div class="w-12 h-12 bg-pti-blue/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-pti-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-pti-dark mb-3" data-i18n="card2_title">Prosthetics & Digital</h3>
+                    <ul class="text-gray-600 space-y-2 text-sm">
+                        <li data-i18n="card2_b1">• Multi-unit & Temporary Abutments</li>
+                        <li data-i18n="card2_b2">• Loc-bil® Attachments</li>
+                        <li data-i18n="card2_b3">• Ti-base & Pre-mill Abutments</li>
+                        <li data-i18n="card2_b4">• Digital Analogues & Scan Bodies</li>
+                    </ul>
+                </div>
 
-</script>
+                <!-- Card 3 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-lg transition">
+                    <div class="w-12 h-12 bg-pti-blue/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-pti-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-pti-dark mb-3" data-i18n="card3_title">Surgical Kits</h3>
+                    <ul class="text-gray-600 space-y-2 text-sm">
+                        <li data-i18n="card3_b1">• Master Surgical Kit</li>
+                        <li data-i18n="card3_b2">• Stopper & Bone Expansion Kits</li>
+                        <li data-i18n="card3_b3">• All on Four Selection Kit</li>
+                        <li data-i18n="card3_b4">• GBR & Biomaterials Fixation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-slate-50 z-20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-pti-dark mb-4" data-i18n="faq_title">Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h4 class="text-lg font-bold text-pti-dark mb-2" data-i18n="faq1_q">How long must I wait for the permanent restoration?</h4>
+                    <p class="text-gray-600 text-sm" data-i18n="faq1_a">After implant placement, osseointegration (fusion of the implant to the jawbone) takes approximately 8-12 weeks. Proper healing is essential before load bearing.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h4 class="text-lg font-bold text-pti-dark mb-2" data-i18n="faq2_q">Is the dental implant surgery painful?</h4>
+                    <p class="text-gray-600 text-sm" data-i18n="faq2_a">Dental implant surgeries are generally painless procedures performed under local anesthesia. Sedation and general anesthesia are also options depending on the patient's comfort level.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-pti-dark py-12 border-t border-gray-800 z-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-2xl font-bold text-white tracking-tighter mb-4 block">PTI <span class="text-pti-blue">INTERNATIONAL</span></span>
+            <p class="text-gray-400 text-sm mb-8" data-i18n="footer_desc">Advanced implantology solutions engineered for global standards.</p>
+            <p class="text-gray-500 text-xs">© 2026 PTI International. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts: Translation & Animation -->
+    <script>
+        // --- 1. LANGUAGE DICTIONARY ---
+        const translations = {
+            en: {
+                nav_products: "Products", nav_technology: "Technology", nav_faq: "FAQ",
+                hero_title: "Precision at the <br/><span class='text-pti-blue'>Bone Level.</span>",
+                hero_desc: "PTI International delivers advanced titanium implant solutions. Powered by industry-leading SLA surface technology for optimal osseointegration.",
+                hero_scroll: "Scroll to visualize insertion ↓",
+                phase1_title: "Phase 1: Flawless Insertion",
+                phase1_desc: "Our surgical kits provide maximum precision. The implant acts as a secure, biomechanical anchor in the jawbone.",
+                phase1_bullet1: "✓ Bone Level & Tissue Level Options", phase1_bullet2: "✓ Short & Compressive Implants available",
+                phase2_title: "Phase 2: Osseointegration",
+                phase2_desc: "Over a period of 8-12 weeks, the jawbone fuses perfectly with our SLA-coated titanium surface. This scientifically proven coating accelerates healing and maximizes long-term structural stability.",
+                prod_title: "Comprehensive Dental Solutions",
+                prod_subtitle: "From single-piece compressive implants to advanced digital prosthetic components, designed for modern dental workflows.",
+                card1_title: "Implant Systems", card1_b1: "• Bone Level Implants", card1_b2: "• Tissue Level Implants", card1_b3: "• Ø2.9 mm Narrow Implants", card1_b4: "• Short Implants",
+                card2_title: "Prosthetics & Digital", card2_b1: "• Multi-unit & Temp Abutments", card2_b2: "• Loc-bil® Attachments", card2_b3: "• Ti-base & Pre-mill Abutments", card2_b4: "• Digital Analogues",
+                card3_title: "Surgical Kits", card3_b1: "• Master Surgical Kit", card3_b2: "• Stopper & Bone Expansion", card3_b3: "• All on Four Selection Kit", card3_b4: "• GBR & Biomaterials Fixation",
+                faq_title: "Frequently Asked Questions",
+                faq1_q: "How long must I wait for the permanent restoration?", faq1_a: "After implant placement, osseointegration takes approximately 8-12 weeks. Proper healing is essential.",
+                faq2_q: "Is the dental implant surgery painful?", faq2_a: "Surgeries are generally painless procedures performed under local anesthesia. Sedation is available.",
+                footer_desc: "Advanced implantology solutions engineered for global standards."
+            },
+            tr: {
+                nav_products: "Ürünler", nav_technology: "Teknoloji", nav_faq: "SSS",
+                hero_title: "Kemik Seviyesinde <br/><span class='text-pti-blue'>Kusursuz Hassasiyet.</span>",
+                hero_desc: "PTI International, gelişmiş titanyum implant çözümleri sunar. Optimum osseointegrasyon için sektör lideri SLA yüzey teknolojisi ile güçlendirilmiştir.",
+                hero_scroll: "Yerleşimi görmek için kaydırın ↓",
+                phase1_title: "Aşama 1: Kusursuz Yerleşim",
+                phase1_desc: "Cerrahi setlerimiz maksimum hassasiyet sağlar. İmplant, çene kemiğinde güvenli ve biyomekanik bir çapa görevi görür.",
+                phase1_bullet1: "✓ Kemik ve Doku Seviyesi Seçenekleri", phase1_bullet2: "✓ Kısa ve Kompresif İmplantlar",
+                phase2_title: "Aşama 2: Osseointegrasyon",
+                phase2_desc: "8-12 haftalık bir süre boyunca çene kemiği, SLA kaplı titanyum yüzeyimizle mükemmel bir şekilde kaynaşır. Bu bilimsel olarak kanıtlanmış kaplama iyileşmeyi hızlandırır.",
+                prod_title: "Kapsamlı Dental Çözümler",
+                prod_subtitle: "Modern dental iş akışları için tasarlanmış tek parça kompresif implantlardan gelişmiş dijital protetik bileşenlere kadar.",
+                card1_title: "İmplant Sistemleri", card1_b1: "• Kemik Seviyesi İmplantlar", card1_b2: "• Doku Seviyesi İmplantlar", card1_b3: "• Ø2.9 mm İnce İmplantlar", card1_b4: "• Kısa İmplantlar",
+                card2_title: "Protetik ve Dijital", card2_b1: "• Multi-unit ve Geçici Dayanaklar", card2_b2: "• Loc-bil® Tutucular", card2_b3: "• Ti-base & Pre-mill Dayanaklar", card2_b4: "• Dijital Analoglar",
+                card3_title: "Cerrahi Setler", card3_b1: "• Ana Cerrahi Set", card3_b2: "• Stopper ve Kemik Genişletme", card3_b3: "• All on Four Seçim Kiti", card3_b4: "• GBR ve Biyomateryal Fiksasyon",
+                faq_title: "Sıkça Sorulan Sorular",
+                faq1_q: "Kalıcı restorasyon için ne kadar beklemeliyim?", faq1_a: "İmplant yerleştirildikten sonra osseointegrasyon yaklaşık 8-12 hafta sürer. Yük bindirmeden önce iyileşme şarttır.",
+                faq2_q: "İmplant ameliyatı ağrılı mıdır?", faq2_a: "Genellikle lokal anestezi altında yapılan ağrısız bir işlemdir. Hastanın rahatına göre sedasyon seçenekleri mevcuttur.",
+                footer_desc: "Küresel standartlarda mühendisliği yapılmış gelişmiş implantoloji çözümleri."
+            }
+        };
+
+        // --- 2. LANGUAGE SWITCHER LOGIC ---
+        const langSelect = document.getElementById('lang-switch');
+        const elementsToTranslate = document.querySelectorAll('[data-i18n]');
+
+        langSelect.addEventListener('change', (e) => {
+            const lang = e.target.value;
+            elementsToTranslate.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+        });
+
+        // --- 3. GSAP SCROLL ANIMATIONS ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        // A. Text Panel Fade-ins
+        const reveals = gsap.utils.toArray('.gs-reveal');
+        reveals.forEach((elem) => {
+            gsap.fromTo(elem, 
+                { autoAlpha: 0, y: 50 }, 
+                { 
+                    duration: 1, 
+                    autoAlpha: 1, 
+                    y: 0, 
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 75%", 
+                        end: "bottom 25%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+        });
+
+        // B. 3D Model "Screwing" Animation tied to Scroll
+        const modelViewer = document.getElementById('implant-model');
+        
+        // Wait for the model to load before animating
+        modelViewer.addEventListener('load', () => {
+            ScrollTrigger.create({
+                trigger: "body",
+                start: "top top",
+                end: "bottom bottom",
+                onUpdate: (self) => {
+                    // self.progress goes from 0 to 1 as user scrolls down the page
+                    // We multiply by 1440 to create 4 full rotations (360 * 4) as they scroll
+                    const rotationY = self.progress * 1440; 
+                    
+                    // Update the camera-orbit attribute directly on the model-viewer
+                    // Format: "Azimuth(Y) Elevation(X) Distance(Z)"
+                    modelViewer.setAttribute('camera-orbit', `${rotationY}deg 75deg 105%`);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
